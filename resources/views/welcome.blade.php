@@ -524,68 +524,34 @@
                 </div>
             @endif
             
-      <div class="container">
-        @foreach ($posts as $post)
-        <div class="well">
-            <div class="media">
-                <a class="pull-left" href="#">
-                  <img class="media-object" src="{{ Storage::url($post->image) }}" height="168" width="300">
-                </a>
-                <div class="media-body">
-                  <h4 class="media-heading">{{ $post->title }}</h4>
-                <p class="text-right"><a href="https://www.w3schools.com/">เพิ่มเติม...</a></p>
-                <p>{{ $post->description }}</p>
-                <ul class="list-inline list-unstyled">
-                    <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-                  <li>|</li>
-                  <span><i class="glyphicon glyphicon-time"></i> 2 hours</span>
-                  <li>|</li>
-                  </ul>
-                  
-                  <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
-
-                    <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
-
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-
+            @foreach ($posts as $post)
+            <div class="card border-success">
+              <h5 class="card-header ">Featured</h5>
+              <div class="card-body">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="{{ Storage::url($post->image) }}" class="card-img" alt="..." height="168" width="300">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ $post->title }}</h5>
+                      <p class="card-text">{{ $post->description }}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
+                        <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        @endforeach
-      </div>
+            <br>
+            @endforeach
       {{-- {!! $posts->links() !!} --}}
       {{-- post --}}
-      <br><br>
-      @foreach ($posts as $post)
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="{{ Storage::url($post->image) }}" class="card-img" alt="..." height="168" width="300">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{ $post->title }}</h5>
-              <p class="card-text">{{ $post->description }}</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-            <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
-
-              <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
-
-              @csrf
-              @method('DELETE')
-
-              <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-          </div>
-        </div>
-      </div>
-      @endforeach
-
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
