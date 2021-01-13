@@ -17,12 +17,12 @@
 
             <div class="mt-4">
                 <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                <x-jet-input id="phone" class="block mt-1 w-full" type="phone" name="users_phone" :value="old('users_phone')" required />
+                <x-jet-input id="users_phone" class="block mt-1 w-full" type="text" name="users_phone" :value="old('users_phone')" required />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="idcard" value="{{ __('Idcard') }}" />
-                <x-jet-input id="idcard" class="block mt-1 w-full" type="idcard" name="users_idcard" :value="old('users_idcard')" required />
+                <x-jet-input id="users_idcard" class="block mt-1 w-full" type="text" name="users_idcard" :value="old('users_idcard')" required />
             </div>
 
             <div class="mt-4">

@@ -1,7 +1,8 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
+            <img src="img/clinic.JPG" alt="Girl in a jacket" width="150" height="100">
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

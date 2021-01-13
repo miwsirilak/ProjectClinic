@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-// PostKnowledge
 use App\Http\Controllers\PostCRUDController;
+use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Livewire\User\UserDashboardComponent;
 
 
 /*
@@ -27,9 +27,23 @@ Route::get('/', [PostCRUDController::class, 'index']);
 
   
 Route::resource('patients', PatientController::class);
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+// login
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+
+// For User or Customer
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    Route::get('/user/dashboard', UserDashboardComponent::class)->name('user.dashboard');
+
+});
+
+// For Admin
+Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){
+    Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
+
+});
 
 // test
 Route::get('/layout', function () {

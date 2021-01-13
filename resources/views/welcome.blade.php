@@ -357,8 +357,67 @@
               </div>
             </li> --}}
 
+            {{-- <li class="menu-item menu-item-has-children parent">
+                <a title="Dollar (USD)" href="#">Dollar (USD)<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                <ul class="submenu curency">
+                    <li class="menu-item">
+                        <a title="Pound (GBP)" href="#">Pound (GBP)</a>
+                    </li>
+                    <li class="menu-item">
+                      <a title="Euro (EUR)" href="#">Euro (EUR)</a>
+                  </li>
+                    <li class="menu-item">
+                      <a title="Dollar (USD)" href="#">Dollar (USD)</a>
+                  </li>
+                </ul>
+            </li> --}}
+
+            {{-- test --}}
+            @if(Route::has('login'))
+                @auth
+                  @if(Auth::user()->role === 'admin')
+                      <li class="menu-item menu-item-has-children parent">
+                        <a title="My Account" href="#">My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="submenu curency">
+                            <li class="menu-item">
+                                <a title="Dashboard" href="{{route('admin.dashboard')}}">Dashboard</a>
+                            </li>
+                            <li class="menu-item">
+                              <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            </li>
+                            <form id="logout-form" method="POST" action="{{route('logout')}}">
+                                @csrf
+                            </form>
+                        </ul>
+                    </li>
+                  @else 
+                      <li class="menu-item menu-item-has-children parent">
+                        <a title="My Account" href="#">My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="submenu curency">
+                            <li class="menu-item">
+                                <a title="Dashboard" href="{{route('user.dashboard')}}">Dashboard</a>
+                            </li>
+                            <li class="menu-item">
+                              <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            </li>
+                            <form id="logout-form" method="POST" action="{{route('logout')}}">
+                                @csrf
+                            </form>
+                        </ul>
+                    </li>
+                  @endif  
+
+                @else
+                    <li class="menu-item"><a title="Register or Login" href="{{route('login')}}">Login</a></li>
+                      <li class="menu-item"><a title="Register or Login" href="{{route('register')}}">Register</a></li>
+                @endif 
+            @endif
+            {{-- test --}}    
+           
+            
+
             {{-- templat  login --}}
-            <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+            {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                         @auth
@@ -371,7 +430,7 @@
                             @endif
                         @endauth
                     </div>
-                @endif
+                @endif --}}
             {{-- templat --}}
             
           </ul>
@@ -500,6 +559,32 @@
       </div>
       {{-- {!! $posts->links() !!} --}}
       {{-- post --}}
+      <br><br>
+      @foreach ($posts as $post)
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ Storage::url($post->image) }}" class="card-img" alt="..." height="168" width="300">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ $post->title }}</h5>
+              <p class="card-text">{{ $post->description }}</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+            <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
+
+              <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
+
+              @csrf
+              @method('DELETE')
+
+              <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          </div>
+        </div>
+      </div>
+      @endforeach
 
 
       <!-- Footer -->
