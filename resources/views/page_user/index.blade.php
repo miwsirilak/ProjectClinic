@@ -103,7 +103,7 @@
     </div>
     <!-- Card Body -->
     <div class="card-body">
-    <img src="img/Social_Distancing.png" alt="Girl in a jacket" width="600" height="450">
+    <img src="{{ asset('img/Social_Distancing.png')}}" alt="Girl in a jacket" width="600" height="450">
       <!-- <div class="chart-area">
         <canvas id="myAreaChart"></canvas>
       </div> -->
@@ -133,7 +133,7 @@
     
     <div class="card-body">
       <div class="chart-pie pt-4 pb-2">
-        <img src="img/shutterstock.jpg" alt="Girl in a jacket" width="300" height="250">
+        <img src="{{ asset('img/shutterstock.jpg')}}" alt="Girl in a jacket" width="280" height="250">
       </div>
       <div class="mt-4 text-center small">
         <span class="mr-2">

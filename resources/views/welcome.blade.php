@@ -409,6 +409,7 @@
 
                 @else
                     <li class="menu-item"><a title="Register or Login" href="{{route('login')}}">Login</a></li>
+                    <div class="topbar-divider d-none d-sm-block"></div>
                       <li class="menu-item"><a title="Register or Login" href="{{route('register')}}">Register</a></li>
                 @endif 
             @endif
@@ -526,7 +527,7 @@
             
             @foreach ($posts as $post)
             <div class="card border-success">
-              <h5 class="card-header ">Featured</h5>
+              <h5 class="card-header ">ความรู้ข่าวสาร</h5>
               <div class="card-body">
                 <div class="row no-gutters">
                   <div class="col-md-4">
@@ -536,7 +537,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ $post->title }}</h5>
                       <p class="card-text">{{ $post->description }}</p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      <p class="card-text"><small class="text-muted">{{ $post->created_at }}</small></p>
                       <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
                         <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
                         @csrf
