@@ -3,10 +3,8 @@
 @section('title', 'Base page')
 
 @section('content')
-{{-- แผนที่ --}}
-<div class="card text-info bg-warning mb-3" style="max-width: 80rem;">
-    <div class="card-header">ระบบนัด</div>
-    <div class="card-body">
+
+
 
       <div class="text-center">
         <form>
@@ -44,12 +42,8 @@
             </div>
           </div>
         </form>
-      </div>
+      </div> 
       
-    </div>
-  </div>
-
-
 @endsection
 
 

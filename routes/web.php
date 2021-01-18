@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostCRUDController;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AppointmentController;
+
+
 
 
 /*
@@ -20,13 +24,15 @@ use App\Http\Livewire\User\UserDashboardComponent;
 // Route::get('/', function () {
     //     return view('welcome');
     // });
-use App\Http\Controllers\PatientController;
+
 
 Route::resource('posts', PostCRUDController::class);
 Route::get('/', [PostCRUDController::class, 'index']);
 
   
 Route::resource('patients', PatientController::class);
+
+Route::resource('appointments', AppointmentController::class);
 
 // login
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -71,9 +77,9 @@ Route::get('/calen', function () {
     return view('page_user/calen');
 })->name('calen');
 
-Route::get('/appointment', function () {
-    return view('page_user/appointment');
-})->name('appointment');
+// Route::get('/appointment', function () {
+//     return view('page_user/appointment');
+// })->name('appointment');
 
 Route::get('/cancle', function () {
     return view('page_user/cancle');
