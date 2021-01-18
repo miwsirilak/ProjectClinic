@@ -22,25 +22,29 @@
         <tr>
             <th>ลำดับที่</th>
             <th>ชื่อ</th>
+            <th>วันที่</th>
+            <th>เวลา</th>
             <th>อาการที่มาพบแพทย์</th>
-            <th width="280px">Action</th>
+            <th width="280px">เลื่อนวันนัด | ยกเลิกวันนัด</th>
         </tr>
         @foreach ($appointments as $appointment)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $appointment->name }}</td>
+            <td>{{ $appointment->date }}</td>
+            <td>{{ $appointment->time }}</td>
             <td>{{ $appointment->sympotm }}</td>
             <td>
                 <form action="{{ route('appointments.destroy',$appointment->id) }}" method="POST">
    
-                    <a class="btn btn-info" href="{{ route('appointments.show',$appointment->id) }}">Show</a>
+                    {{-- <a class="btn btn-info" href="{{ route('appointments.show',$appointment->id) }}">Show</a> --}}
     
                     <a class="btn btn-primary" href="{{ route('appointments.edit',$appointment->id) }}">เลื่อนวันนัด</a>
    
                     @csrf
                     @method('DELETE')
       
-                    <button type="submit" class="btn btn-danger">ยกเลิกการนัด</button>
+                    <button type="submit" class="btn btn-danger">ยกเลิกวันนัด</button>
                 </form>
             </td>
         </tr>

@@ -10,6 +10,6 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'sympotm'
+        'name', 'date', 'time','sympotm'
     ];
 }

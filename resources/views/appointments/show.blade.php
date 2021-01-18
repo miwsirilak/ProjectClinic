@@ -19,10 +19,24 @@
                 {{ $appointment->name }}
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>วันที่:</strong>
+                    {{ $appointment->date }}
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>เวลา:</strong>
+                    {{ $appointment->time }}
+                </div>
+            </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>อาการที่มาพบแพทย์:</strong>
-                {{ $appointment->detail }}
+                {{ $appointment->sympotm }}
             </div>
         </div>
     </div>

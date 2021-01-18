@@ -14,7 +14,7 @@
    
     @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <strong>คำเตือน!</strong> ดูเเหมือนว่าคุณมีปัญหาบางอย่างกับข้อมูลที่คุณป้อน<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -38,14 +38,14 @@
             <form>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <label for="party"><strong>วันที่:</strong>
-                        <input type="date" value="2021-01-01" class="form-control">
+                        <input type="date" value="{{ $appointment->date }}" name="date" class="form-control">
                     </label>
                 </div>
             </form>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <strong>เวลา:</strong>
-                <input type="time" id="inputMDEx1" class="form-control">
+                <input type="time" id="inputMDEx1" value="{{ $appointment->time }}" name="time" class="form-control">
                 <label for="form1" class=""></label> 
             </div>
             {{-- Time  --}}

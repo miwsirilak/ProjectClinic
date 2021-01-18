@@ -40,6 +40,8 @@ class AppointmentController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'date' => 'required',
+            'time' => 'required',
             'sympotm' => 'required',
         ]);
     
@@ -82,6 +84,8 @@ class AppointmentController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'date' => 'required',
+            'time' => 'required',
             'sympotm' => 'required',
         ]);
     

@@ -15,9 +15,9 @@
         <div class="pull-left mb-2">
             <h2>เพิ่มความรู้หรือข่าวสารเกี่ยวกับโรคผิดหนัง</h2>
         </div>
-        <div class="pull-right">
+        {{-- <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('posts.index') }}"> กลับ</a>
-        </div>
+        </div> --}}
     </div>
 </div>
    
@@ -58,7 +58,10 @@
                @enderror
             </div>
         </div>
-        <button type="submit" class="btn btn-primary ml-3">โพสต์</button>
+        <div class="pull-left mb-2">
+            <button type="submit" class="btn btn-primary ml-3">โพสต์</button>
+            <a class="btn btn-danger" href="{{ route('posts.index') }}"> กลับ</a>
+        </div>
     </div>
     
    

@@ -15,9 +15,9 @@
             <div class="pull-left">
                 <h2>แก้ไขโพสต์</h2>
             </div>
-            <div class="pull-right">
+            {{-- <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('posts.index') }}" enctype="multipart/form-data"> กลับ</a>
-            </div>
+            </div> --}}
         </div>
     </div>
    
@@ -59,17 +59,14 @@
                @enderror
             </div>
             <div class="form-group">
-
               <img src="{{ Storage::url($post->image) }}" height="200" width="200" alt="" />
-
-
             </div>
         </div>
-            
-              <button type="submit" class="btn btn-primary ml-3">ตกลง</button>
-          
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary ml-3">ตกลง</button>
+                <a class="btn btn-danger" href="{{ route('posts.index') }}" enctype="multipart/form-data"> กลับ</a>
+            </div>
         </div>
-   
     </form>
 </div>
 
