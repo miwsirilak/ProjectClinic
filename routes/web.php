@@ -6,7 +6,7 @@ use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
-
+use App\Http\Controllers\FullCalendarEventMasterController;
 
 
 
@@ -50,6 +50,14 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
 
 });
+
+
+//fullcalender
+// Route::resource('fullcalendareventmaster', FullCalendarEventMasterController::class);
+Route::get('/fullcalendareventmaster',[FullCalendarEventMasterController::class,'index']);
+Route::post('/fullcalendareventmaster/create',[FullCalendarEventMasterController::class,'create']);
+Route::post('/fullcalendareventmaster/update',[FullCalendarEventMasterController::class,'update']);
+Route::post('/fullcalendareventmaster/delete',[FullCalendarEventMasterController::class,'destroy']);
 
 // test
 Route::get('/layout', function () {

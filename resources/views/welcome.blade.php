@@ -531,7 +531,7 @@
               <div class="card-body">
                 <div class="row no-gutters">
                   <div class="col-md-4">
-                    <img src="{{ Storage::url($post->image) }}" class="card-img" alt="..." height="168" width="300">
+                    <img src="{{ Storage::url($post->image) }}" class="card-img" alt="..." height="200" width="300">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">

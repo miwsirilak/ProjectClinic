@@ -70,7 +70,7 @@
             <div class="well">
                 <div class="media">
                     <a class="pull-left" href="#">
-                      <img class="media-object" src="{{ Storage::url($post->image) }}" height="168" width="300">
+                      <img class="media-object" src="{{ Storage::url($post->image) }}" height="200" width="300">
                     </a>
                     <div class="media-body">
                       <h4 class="media-heading">{{ $post->title }}</h4>
