@@ -7,6 +7,7 @@ use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FullCalendarEventMasterController;
+use App\Http\Controllers\FullCalendarAppointmentController;
 
 
 
@@ -58,6 +59,13 @@ Route::get('/fullcalendareventmaster',[FullCalendarEventMasterController::class,
 Route::post('/fullcalendareventmaster/create',[FullCalendarEventMasterController::class,'create']);
 Route::post('/fullcalendareventmaster/update',[FullCalendarEventMasterController::class,'update']);
 Route::post('/fullcalendareventmaster/delete',[FullCalendarEventMasterController::class,'destroy']);
+
+//fullcalendar_User
+Route::get('/FullCalendarAppointment',[FullCalendarAppointmentController::class,'index']);
+Route::post('/FullCalendarAppointment/create',[FullCalendarAppointmentController::class,'create']);
+Route::post('/FullCalendarAppointment/update',[FullCalendarAppointmentController::class,'update']);
+Route::post('/FullCalendarAppointment/delete',[FullCalendarAppointmentController::class,'destroy']);
+
 
 // test
 Route::get('/layout', function () {
@@ -117,3 +125,14 @@ Route::get('/sliding', function () {
     return view('page_user/sliding');
 })->name('sliding');
 // templat
+
+//StartDate-EndDate
+Route::get('/startdate', function () {
+    return view('datetime/startdate');
+});
+
+Route::get('/enddate', function () {
+    return view('datetime/enddate');
+});
+
+

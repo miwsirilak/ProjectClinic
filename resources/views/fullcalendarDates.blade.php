@@ -26,6 +26,7 @@
  
         var calendar = $('#calendar').fullCalendar({
             editable: true,
+            defaultView: 'month',
             events: SITEURL + "/fullcalendareventmaster",
             displayEventTime: true,
             editable: true,
@@ -50,7 +51,7 @@
                         data: 'title=' + title + '&start=' + start + '&end=' + end,
                         type: "POST",
                         success: function (data) {
-                            displayMessage("Added Successfully");
+                            displayMessage("ยืนยันวันปิดทำการของคลินิกเรียบร้อยแล้ว");
                             $('#calendar').fullCalendar('removeEvents');
                             $('#calendar').fullCalendar('refetchEvents' );
                         }
@@ -76,12 +77,12 @@
                             data: 'title=' + event.title + '&start=' + start + '&end=' + end + '&id=' + event.id,
                             type: "POST",
                             success: function (response) {
-                                displayMessage("Updated Successfully");
+                                displayMessage("เลื่อนวันปิดทำการของคลินิกเรียบร้อยแล้ว");
                             }
                         });
                     },
             eventClick: function (event) {
-                var deleteMsg = confirm("Do you really want to delete?");
+                var deleteMsg = confirm("ยืนยันยกเลิกวันหยุด");
                 if (deleteMsg) {
                     $.ajax({
                         type: "POST",
@@ -90,7 +91,7 @@
                         success: function (response) {
                             if(parseInt(response) > 0) {
                                 $('#calendar').fullCalendar('removeEvents', event.id);
-                                displayMessage("Deleted Successfully");
+                                displayMessage("ยกเลิกวันปิดทำการของคลินิกเรียบร้อยแล้ว");
                             }
                         }
                     });

@@ -1,3 +1,19 @@
+<html>
+<head>
+    <title>Calendar</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="response alert alert-success mt-2" style="display: none;"></div>
+        <div id='calendar'></div>  
+    </div>
+</body>
 <script>
     $(document).ready(function () {
         var SITEURL = "{{url('/')}}";
@@ -9,7 +25,8 @@
  
         var calendar = $('#calendar').fullCalendar({
             editable: true,
-            events: SITEURL + "/fullcalendareventmaster",
+            defaultView: 'month',
+            events: SITEURL + "/FullCalendarAppointment",
             displayEventTime: true,
             editable: true,
             eventRender: function (event, element, view) {
@@ -22,25 +39,25 @@
             selectable: true,
             selectHelper: true,
             select: function (start, end, allDay) {
-                var title = prompt('Event Title:');
+                var username = prompt('Name:');
  
-                if (title) {
+                if (username) {
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
                     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
  
                     $.ajax({
-                        url: SITEURL + "/fullcalendareventmaster/create",
-                        data: 'title=' + title + '&start=' + start + '&end=' + end,
+                        url: SITEURL + "/FullCalendarAppointment/create",
+                        data: 'username=' + username + '&start=' + start + '&end=' + end,
                         type: "POST",
                         success: function (data) {
-                            displayMessage("Added Successfully");
+                            displayMessage("ท่านได้ทำการจองสำเร็จแล้ว");
                             $('#calendar').fullCalendar('removeEvents');
                             $('#calendar').fullCalendar('refetchEvents' );
                         }
                     });
                     calendar.fullCalendar('renderEvent',
                             {
-                                title: title,
+                                username: username,
                                 start: start,
                                 end: end,
                                 allDay: allDay
@@ -55,25 +72,25 @@
                         var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
                         var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
                         $.ajax({
-                            url: SITEURL + '/fullcalendareventmaster/update',
-                            data: 'title=' + event.title + '&start=' + start + '&end=' + end + '&id=' + event.id,
+                            url: SITEURL + '/FullCalendarAppointment/update',
+                            data: 'username=' + event.username + '&start=' + start + '&end=' + end + '&id=' + event.id,
                             type: "POST",
                             success: function (response) {
-                                displayMessage("Updated Successfully");
+                                displayMessage("ท่านได้ทำการเลื่อนวันนัดเรียบร้อยแล้ว");
                             }
                         });
                     },
             eventClick: function (event) {
-                var deleteMsg = confirm("Do you really want to delete?");
+                var deleteMsg = confirm("ท่านต้องการยกเลิกวันนัดหรือไม่?");
                 if (deleteMsg) {
                     $.ajax({
                         type: "POST",
-                        url: SITEURL + '/fullcalendareventmaster/delete',
+                        url: SITEURL + '/FullCalendarAppointment/delete',
                         data: "&id=" + event.id,
                         success: function (response) {
                             if(parseInt(response) > 0) {
                                 $('#calendar').fullCalendar('removeEvents', event.id);
-                                displayMessage("Deleted Successfully");
+                                displayMessage("ยกเลิกวันนัดเรียบร้อยแล้ว");
                             }
                         }
                     });
@@ -88,3 +105,4 @@
         setInterval(function() { $(".response").fadeOut(); }, 4000);
     }
 </script>
+</html>
