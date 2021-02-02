@@ -25,7 +25,7 @@
         });
  
         var calendar = $('#calendar').fullCalendar({
-            //test ล็อกการจองคิว
+            // ล็อกการจองคิว
             defaultView: 'month',
             selectable: true,
             defaultTimedEventDuration: '00:15:00',
@@ -52,7 +52,6 @@
             selectConstraint: "businessHours",
             select: function(start, end, jsEvent, view) {
             if (start.isAfter(moment())) {
-
                 var eventTitle = prompt("Provide Event Title");
                 if (eventTitle) {
                 $("#calendar").fullCalendar('renderEvent', {
@@ -70,13 +69,16 @@
             eventClick: function(calEvent, jsEvent, view) {
             alert('Event: ' + calEvent.title);
             },
-            //test ล็อกการจองคิว
+            // ล็อกการจองคิว
+
+            height: 650,
+            showNonCurrentDates: false,
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
                 },
-            editable: true,
+            // editable: true,
             // defaultView: 'month',
             events: SITEURL + "/fullcalendareventmaster",
             displayEventTime: true,
@@ -156,6 +158,7 @@
         $(".response").html(""+message+"");
         setInterval(function() { $(".response").fadeOut(); }, 4000);
     }
+
 </script>
 
 </html>

@@ -24,33 +24,13 @@
         });
  
         var calendar = $('#calendar').fullCalendar({
-            //test
+            // height: 650,
+            showNonCurrentDates: false,
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
-                },
-            //     // defaultDate: '2014-11-12',
-            //     editable: true,
-            //     eventLimit: true, // allow "more" link when too many events
-            //     businessHours:
-            // [
-            // {
-            //     start: '10:00', // a start time (10am in this example)
-            //     end: '12:00', // an end time (12pm in this example)
-            //     dow: [ 1,3,4,6 ]
-            //     // days of week. an array of zero-based day of week integers (0=Sunday)
-            //     // (Monday-Thursday in this example)
-            // },
-            // {
-            //     start: '12:00', // a start time (12pm in this example)
-            //     end: '18:00', // an end time (6pm in this example)
-            //     dow: [ 1,3,4,6 ]
-            //     // days of week. an array of zero-based day of week integers (0=Sunday)
-            //     // (Monday-Thursday in this example)
-            // }],
-            //test
-            
+            },
             // editable: true,
             // defaultView: 'month',
             events: SITEURL + "/FullCalendarAppointment",
