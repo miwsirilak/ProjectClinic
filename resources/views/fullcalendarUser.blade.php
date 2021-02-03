@@ -34,7 +34,7 @@
             // editable: true,
             // defaultView: 'month',
             events: SITEURL + "/FullCalendarAppointment",
-            displayEventTime: true, 
+            displayEventTime: false, 
             editable: true,
             eventRender: function (event, element, view) {
                 if (event.allDay === 'true') {
@@ -64,10 +64,10 @@
                     });
                     calendar.fullCalendar('renderEvent',
                             {
-                                username: username,
+                                title: username,
                                 start: start,
                                 end: end,
-                                allDay: allDay
+                                allDay: true
                             },
                     true
                             );

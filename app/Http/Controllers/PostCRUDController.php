@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
    
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Auth;
   
 class PostCRUDController extends Controller
 {
@@ -17,6 +18,7 @@ class PostCRUDController extends Controller
         // $posts['posts'] = Post::orderBy('id','desc');
         // echo $posts;
         $posts=Post::orderBy('id', 'desc')->get();
+        // dd(Auth::user()->role);
         return view('welcome',compact('posts'));
 
     }

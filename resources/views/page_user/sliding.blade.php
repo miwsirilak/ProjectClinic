@@ -1,4 +1,4 @@
-@extends('templete.template')
+@extends('templete.templateadmin')
 
 @section('title', 'Base page')
 

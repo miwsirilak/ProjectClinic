@@ -50,7 +50,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="{{route('index')}}">
+        <a class="nav-link" href="/">
           <i class="fas fa-fw fa-home"></i>
           <span>หน้าแรก</span></a>
       </li>
@@ -89,7 +89,7 @@
             <h6 class="collapse-header">รายการ:</h6>
             {{-- <a class="collapse-item" href="{{route('login')}}">เข้าสู่ระบบ</a>
             <a class="collapse-item" href="{{route('register')}}">ลงทะเบียนผู้ป่วยรายใหม่</a> --}}
-            {{-- <a class="collapse-item" href="{{route('appointment')}}">นัดหมายแพทย์</a> --}}
+            <a class="collapse-item" href="#">นัดหมายแพทย์</a>
             <a class="collapse-item" href="{{route('sliding')}}">เลื่อนวันนัด</a>
             <a class="collapse-item" href="{{route('cancle')}}">ยกเลิกวันนัด</a>
           </div>
@@ -105,11 +105,11 @@
       </div>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{route('cards')}}">
           <i class="fas fa-fw fa-folder"></i>
           <span>ความรู้เกี่ยวกับโรคผิวหนัง</span></a>
-      </li>
+      </li> --}}
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -119,11 +119,11 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link" href="{{route('chat')}}">
           <i class="fas fa-fw fa-comments"></i>
           <span>ติดต่อสอบถาม</span></a>
-      </li>
+      </li> --}}
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

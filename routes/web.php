@@ -126,7 +126,7 @@ Route::get('/sliding', function () {
 })->name('sliding');
 // templat
 
-//StartDate-EndDate
+//StartDate-EndDate ไม่ใช้แล้ว
 Route::get('/startdate', function () {
     return view('datetime/startdate');
 });
@@ -136,3 +136,8 @@ Route::get('/enddate', function () {
 });
 
 
+// Route Admin
+Route::get('/templateadmin', function () {
+    return view('templete/templateadmin');
+});
+// Route Admin
