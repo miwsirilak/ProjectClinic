@@ -15,7 +15,7 @@ class CreateUserappointmentsTable extends Migration
     {
         Schema::create('userappointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
+            $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->timestamps();

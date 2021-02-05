@@ -46,15 +46,15 @@
             selectable: true,
             selectHelper: true,
             select: function (start, end, allDay) {
-                var username = prompt('Name:');
+                var title = prompt('Name:');
  
-                if (username) {
+                if (title) {
                     var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
                     var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
  
                     $.ajax({
                         url: SITEURL + "/FullCalendarAppointment/create",
-                        data: 'username=' + username + '&start=' + start + '&end=' + end,
+                        data: 'title=' + title + '&start=' + start + '&end=' + end,
                         type: "POST",
                         success: function (data) {
                             displayMessage("ท่านได้ทำการจองสำเร็จแล้ว");
@@ -64,7 +64,7 @@
                     });
                     calendar.fullCalendar('renderEvent',
                             {
-                                title: username,
+                                title: title,
                                 start: start,
                                 end: end,
                                 allDay: true
@@ -80,7 +80,7 @@
                         var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
                         $.ajax({
                             url: SITEURL + '/FullCalendarAppointment/update',
-                            data: 'username=' + event.username + '&start=' + start + '&end=' + end + '&id=' + event.id,
+                            data: 'title=' + event.title + '&start=' + start + '&end=' + end + '&id=' + event.id,
                             type: "POST",
                             success: function (response) {
                                 displayMessage("ท่านได้ทำการเลื่อนวันนัดเรียบร้อยแล้ว");

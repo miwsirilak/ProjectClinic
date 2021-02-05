@@ -10,6 +10,6 @@ class Userappointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'username','start','end',
+        'title','start','end',
     ];
 }

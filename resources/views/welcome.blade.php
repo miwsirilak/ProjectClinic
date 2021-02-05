@@ -1004,7 +1004,7 @@
 
                     @foreach ($posts as $post)
                         <div class="card border-success">
-                            <h5 class="card-header text-success">ความรู้ข่าวสาร</h5>
+                            <h5 class="card-header text-primary">ความรู้ข่าวสาร</h5>
                             <div class="card-body">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">

@@ -16,7 +16,7 @@ class FullCalendarAppointmentController extends Controller
          $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
          $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
  
-         $data = Userappointment::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','username','start', 'end']);
+         $data = Userappointment::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
         error_log($data);
          return Response::json($data);
         }
@@ -26,7 +26,7 @@ class FullCalendarAppointmentController extends Controller
    
     public function create(Request $request)
     {  
-        $insertArr = [ 'username' => $request->username,
+        $insertArr = [ 'title' => $request->title,
                        'start' => $request->start,
                        'end' => $request->end
                     ];
@@ -39,7 +39,7 @@ class FullCalendarAppointmentController extends Controller
     public function update(Request $request)
     {   
         $where = array('id' => $request->id);
-        $updateArr = ['username' => $request->username,'start' => $request->start, 'end' => $request->end];
+        $updateArr = ['title' => $request->title,'start' => $request->start, 'end' => $request->end];
         $event  = Userappointment::where($where)->update($updateArr);
  
         return Response::json($event);
