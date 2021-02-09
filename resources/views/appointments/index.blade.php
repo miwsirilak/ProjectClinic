@@ -23,23 +23,23 @@
             <th>ลำดับที่</th>
             <th>ชื่อ</th>
             <th>วันที่</th>
-            <th>เวลา</th>
+            {{-- <th>เวลา</th> --}}
             <th>อาการที่มาพบแพทย์</th>
             <th width="280px">เลื่อนวันนัด | ยกเลิกวันนัด</th>
         </tr>
-        @foreach ($appointments as $appointment)
+        @foreach ($appointments as $event)
         <tr>
             <td>{{ ++$i }}</td>
-            <td>{{ $appointment->name }}</td>
-            <td>{{ $appointment->date }}</td>
-            <td>{{ $appointment->time }}</td>
-            <td>{{ $appointment->sympotm }}</td>
+            <td>{{ $event->title }}</td>
+            <td>{{ $event->date }}</td>
+            {{-- <td>{{ $appointment->time }}</td> --}}
+            <td>{{ $event->sympotm }}</td>
             <td>
-                <form action="{{ route('appointments.destroy',$appointment->id) }}" method="POST">
+                <form action="{{ route('appointments.destroy',$event->id) }}" method="POST">
    
                     {{-- <a class="btn btn-info" href="{{ route('appointments.show',$appointment->id) }}">Show</a> --}}
     
-                    <a class="btn btn-primary" href="{{ route('appointments.edit',$appointment->id) }}">เลื่อนวันนัด</a>
+                    <a class="btn btn-primary" href="{{ route('appointments.edit',$event->id) }}">เลื่อนวันนัด</a>
    
                     @csrf
                     @method('DELETE')
@@ -51,6 +51,6 @@
         @endforeach
     </table>
   
-    {!! $appointments->links() !!}
+    {{-- {!! $appointments->links() !!} --}}
       
 @endsection

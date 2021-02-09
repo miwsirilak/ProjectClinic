@@ -35,6 +35,12 @@ Route::resource('patients', PatientController::class);
 
 Route::resource('appointments', AppointmentController::class);
 
+// Route::get('appointments/{event}', AppointmentController::class, 'update')->name('appointments.update');
+// Route::get('appointments', [AppointmentController::class, 'create'])->name('appointments.create');
+// Route::get('appointments', [AppointmentController::class, 'dataTable'])->name('appointments.index');
+// Route::post('appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+// Route::get('appointments/dataTable', [AppointmentController::class, 'dataTable']);
+
 // login
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

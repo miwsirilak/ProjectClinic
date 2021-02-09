@@ -2,7 +2,7 @@
   
 namespace App\Http\Controllers;
    
-use App\Models\Appointment;
+use App\Models\Event;
 use Illuminate\Http\Request;
   
 class AppointmentController extends Controller
@@ -14,10 +14,24 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::latest()->paginate(5);
+        $appointments = Event::latest()->paginate(50);
     
         return view('appointments.index',compact('appointments'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function dataTable()
+    {
+        if(request()->ajax()) 
+        {
+ 
+         $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
+         $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
+ 
+         $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
+         return Response::json($data);
+        }
+        return view('fullcalendarDates');
     }
      
     /**
@@ -38,26 +52,35 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-            'sympotm' => 'required',
-        ]);
-    
-        Appointment::create($request->all());
-     
-        return redirect()->route('appointments.index')
-                        ->with('success','Appointment created successfully.');
+        // $request->validate([
+        //     'title' => 'required',
+        //     'username' => 'required',
+        //     'sympotm' => 'required',
+        //     'booked' => 'required',
+        //     'Workday' => 'required',
+        //     'date' => 'required',
+        //     'start' => date('Y-m-d H:i:s'),
+        //     'end' => date('Y-m-d H:i:s')
+        // ]);
+        $event = new Event;
+        $event->title =  $request->title;
+        $event->date = $request->date ;
+        $event->start = $request->start = $request->date;
+        $event->end = $request->end = date('Y-m-d H:i:s');
+        $event->save();
+        // Event::create($request->all());
+        return view('fullcalendarDates')->with('success','เพิ่มข้อมูลเรียบร้อยแล้ว');
+        // return redirect()->route('appointments.index')
+        //                 ->with('success','Appointment created successfully.');
     }
      
     /**
      * Display the specified resource.
      *
-     * @param  \App\Appointment  $appointment
+     * @param  \App\Event  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function show(Appointment $appointment)
+    public function show(Event $event)
     {
         return view('appointments.show',compact('appointment'));
     } 
@@ -65,11 +88,12 @@ class AppointmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Appointment  $appointment
+     * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Appointment $appointment)
-    {
+    public function edit(Event $event)
+    {   
+
         return view('appointments.edit',compact('appointment'));
     }
     
@@ -77,19 +101,29 @@ class AppointmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Appointment  $appointment
+     * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Appointment $appointment)
+    public function update(Request $request, Event $event)
     {
-        $request->validate([
-            'name' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-            'sympotm' => 'required',
-        ]);
+        // $request->validate([
+        //     'title' => 'required',
+        //     'username' => 'required',
+        //     'sympotm' => 'required',
+        //     'booked' => 'required',
+        //     'Workday' => 'required',
+        //     'date' => 'required',
+        //     'start' => 'required',
+        //     'end' => 'required',
+        // ]);
+        $event = new Event;
+        $event->title =  $request->title;
+        $event->date = $request->date ;
+        $event->start = $request->start = $request->date;
+        $event->end = $request->end = date('Y-m-d H:i:s');
+        $event->save();
     
-        $appointment->update($request->all());
+        $event->update($request->all());
     
         return redirect()->route('appointments.index')
                         ->with('success','Appointment updated successfully');
@@ -98,12 +132,13 @@ class AppointmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Appointment  $appointment
+     * @param  \App\Event  $appointment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Appointment $appointment)
-    {
-        $appointment->delete();
+    public function destroy(Event $event, $id)
+    {   
+        $event = Event::where('id',$id);
+        $event->delete();
     
         return redirect()->route('appointments.index')
                         ->with('success','Appointment deleted successfully');

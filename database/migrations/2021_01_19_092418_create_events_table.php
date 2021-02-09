@@ -14,10 +14,15 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->increments('id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('username')->nullable();
+            $table->string('sympotm')->nullable();
+            $table->string('booked')->nullable();
+            $table->string('Workday')->nullable();
+            $table->date('date')->nullable();
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->timestamps();
         });
     }

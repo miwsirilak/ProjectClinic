@@ -16,27 +16,27 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>ชื่อ:</strong>
-                {{ $appointment->name }}
+                {{ $event->username }}
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>วันที่:</strong>
-                    {{ $appointment->date }}
+                    {{ $event->date }}
                 </div>
             </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>เวลา:</strong>
-                    {{ $appointment->time }}
+                    {{ $event->time }}
                 </div>
-            </div>
+            </div> --}}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>อาการที่มาพบแพทย์:</strong>
-                {{ $appointment->sympotm }}
+                {{ $event->sympotm }}
             </div>
         </div>
     </div>

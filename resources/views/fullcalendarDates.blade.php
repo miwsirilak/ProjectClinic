@@ -10,6 +10,11 @@
 </head>
 <body>
     <div class="container">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
         <div class="response alert alert-success mt-2" style="display: none;"></div>
         <div id='calendar'></div>  
     </div>
@@ -81,7 +86,7 @@
             // editable: true,
             // defaultView: 'month',
             events: SITEURL + "/fullcalendareventmaster",
-            displayEventTime: true,
+            displayEventTime: false,
             editable: true,
             eventRender: function (event, element, view) {
                 if (event.allDay === 'true') {

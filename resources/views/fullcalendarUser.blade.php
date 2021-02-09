@@ -29,7 +29,8 @@
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaWeek,agendaDay'
+                right: 'month'
+                // right: 'month,agendaWeek,agendaDay'
             },
             // editable: true,
             // defaultView: 'month',

@@ -30,23 +30,24 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>ชื่อ:</strong>
-                <input type="text" name="name" class="form-control" placeholder="ชื่อ">
+                <input type="text" name="title" class="form-control" placeholder="ชื่อ">
             </div>
         </div>
         {{-- Time  --}}
         <form>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <label for="party"><strong>วันที่:</strong>
-                    <input type="date" value="2021-01-01" name="date" class="form-control">
+                    {{-- <input type="date" value="2021-01-01" name="date" class="form-control"> --}}
+                    <input type="date"  value=" " name="date" class="form-control">
                 </label>
             </div>
         </form>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
             <strong>เวลา:</strong>
             <input type="time" id="inputMDEx1" name="time" class="form-control">
             <label for="form1" class=""></label> 
-        </div>
+        </div> --}}
         {{-- Time  --}}
         
         <div class="col-xs-12 col-sm-12 col-md-12">
