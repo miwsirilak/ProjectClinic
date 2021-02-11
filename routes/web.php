@@ -32,11 +32,19 @@ Route::resource('posts', PostCRUDController::class);
 Route::get('/', [PostCRUDController::class, 'index']);
 
 Route::resource('patients', PatientController::class);
-//test
-Route::resource('bookings', BookingController::class);
-Route::resource('events', EventController::class);
 
+//ไม่น่าเอา
 Route::resource('appointments', AppointmentController::class);
+Route::resource('bookings', BookingController::class);
+//ไม่น่าเอา
+
+
+// Route::resource('events', EventController::class);
+Route::resource('events', EventController::class)->names([
+    'index' => 'events.index',
+    'create' => 'events.create'
+]);
+
 
 // Route::get('bookings/{event}', BookingController::class, 'edit')->name('bookings.edit');
 // Route::get('appointments', [AppointmentController::class, 'create'])->name('appointments.create');

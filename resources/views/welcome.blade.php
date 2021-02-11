@@ -602,9 +602,10 @@
                         <h6 class="collapse-header">รายการ:</h6>
                         {{-- <a class="collapse-item" href="{{route('login')}}">เข้าสู่ระบบ</a>
             <a class="collapse-item" href="{{route('register')}}">ลงทะเบียนผู้ป่วยรายใหม่</a> --}}
-                        <a class="collapse-item" href="#">นัดหมายแพทย์</a>
-                        <a class="collapse-item" href="{{ route('sliding') }}">เลื่อนวันนัด</a>
-                        <a class="collapse-item" href="{{ route('cancle') }}">ยกเลิกวันนัด</a>
+                        <a class="collapse-item" href="{{ route('events.index') }}">ตารางนัดหมายแพทย์</a>
+                        <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
+                        {{-- <a class="collapse-item" href="{{ route('sliding') }}">เลื่อนวันนัด</a>
+                        <a class="collapse-item" href="{{ route('cancle') }}">ยกเลิกวันนัด</a> --}}
                     </div>
                 </div>
             </li>

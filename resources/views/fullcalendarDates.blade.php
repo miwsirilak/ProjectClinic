@@ -11,7 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 </head>
 
-<body>
+<body style="background-color:#acf8ee;">
+    <br>
     <div class="container">
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -21,7 +22,12 @@
         <div class="response alert alert-success mt-2" style="display: none;"></div>
         <div id='calendar'></div>
     </div>
+    <br>
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+        <a class="btn btn-success" href="/">กลับสู่หน้าหลัก</a>
+    </div>
 </body>
+
 
 <script>
     $(document).ready(function() {
@@ -79,7 +85,8 @@
             },
             // ล็อกการจองคิว
 
-            height: 650,
+            // height: 650,
+            height: 550,
             showNonCurrentDates: false,
             header: {
                 left: 'prev,next today',
@@ -113,7 +120,8 @@
                         data: 'title=' + title + '&start=' + start + '&end=' + end,
                         type: "POST",
                         success: function(data) {
-                            displayMessage("ยืนยันวันปิดทำการของคลินิกเรียบร้อยแล้ว");
+                            displayMessage(
+                                "ยืนยันวันปิดทำการของคลินิกเรียบร้อยแล้ว");
                             $('#calendar').fullCalendar('removeEvents');
                             $('#calendar').fullCalendar('refetchEvents');
                         }
@@ -152,7 +160,8 @@
                         data: "&id=" + event.id,
                         success: function(response) {
                             if (parseInt(response) > 0) {
-                                $('#calendar').fullCalendar('removeEvents', event.id);
+                                $('#calendar').fullCalendar('removeEvents', event
+                                    .id);
                                 displayMessage(
                                     "ยกเลิกวันปิดทำการของคลินิกเรียบร้อยแล้ว");
                             }

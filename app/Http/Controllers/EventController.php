@@ -67,7 +67,7 @@ class EventController extends Controller
         $event->save();
      
         return redirect()->route('events.index')
-                        ->with('success','Event created successfully.');
+                        ->with('success','ท่านได้ทำการนัดหมายแพทย์เรียบร้อยแล้ว');
     }
      
     /**
@@ -114,11 +114,9 @@ class EventController extends Controller
         $event->start = $request->start = $request->date;
         $event->end = $request->end = date('Y-m-d H:i:s');
         $event->save();
-
-        // dd($event);
     
         return redirect()->route('events.index')
-                        ->with('success','Event updated successfully');
+                        ->with('success','ท่านได้ทำการนัดหมายแพทย์เรียบร้อยแล้ว');
     }
     
     /**
@@ -132,6 +130,6 @@ class EventController extends Controller
         $event->delete();
     
         return redirect()->route('events.index')
-                        ->with('success','Event deleted successfully');
+                        ->with('success','ท่านได้ทำการยกเลิกวันนัดเรียบร้อยแล้ว');
     }
 }
