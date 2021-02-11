@@ -1,11 +1,11 @@
 <?php
-  
+
 namespace App\Http\Controllers;
-   
+
 use App\Models\Event;
 use Illuminate\Http\Request;
-  
-class AppointmentController extends Controller
+
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,25 +14,25 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Event::latest()->paginate(50);
+        $events = Event::latest()->paginate(5);
     
-        return view('appointments.index',compact('appointments'))
+        return view('events.index',compact('events'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function dataTable()
-    {
-        if(request()->ajax()) 
-        {
+    // public function dataTable()
+    // {
+    //     if(request()->ajax()) 
+    //     {
  
-         $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
-         $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
+    //      $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
+    //      $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
  
-         $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
-         return Response::json($data);
-        }
-        return view('fullcalendarDates');
-    }
+    //      $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
+    //      return Response::json($data);
+    //     }
+    //     return view('fullcalendarDates');
+    // }
      
     /**
      * Show the form for creating a new resource.
@@ -41,7 +41,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        return view('appointments.create');
+        return view('events.create');
     }
     
     /**
@@ -54,35 +54,31 @@ class AppointmentController extends Controller
     {
         // $request->validate([
         //     'title' => 'required',
-        //     'username' => 'required',
         //     'sympotm' => 'required',
-        //     'booked' => 'required',
-        //     'Workday' => 'required',
-        //     'date' => 'required',
-        //     'start' => date('Y-m-d H:i:s'),
-        //     'end' => date('Y-m-d H:i:s')
         // ]);
+    
+        // Event::create($request->all());
         $event = new Event;
         $event->title =  $request->title;
+        $event->sympotm =  $request->sympotm;
         $event->date = $request->date ;
         $event->start = $request->start = $request->date;
         $event->end = $request->end = date('Y-m-d H:i:s');
         $event->save();
-        // Event::create($request->all());
-        return view('fullcalendarDates')->with('success','เพิ่มข้อมูลเรียบร้อยแล้ว');
-        // return redirect()->route('appointments.index')
-        //                 ->with('success','Appointment created successfully.');
+     
+        return redirect()->route('events.index')
+                        ->with('success','Event created successfully.');
     }
      
     /**
      * Display the specified resource.
      *
-     * @param  \App\Event  $appointment
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
     {
-        return view('appointments.show',compact('appointment'));
+        return view('events.show',compact('event'));
     } 
      
     /**
@@ -92,9 +88,8 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
-    {   
-
-        return view('appointments.edit',compact('event'));
+    {
+        return view('events.edit',compact('event'));
     }
     
     /**
@@ -108,39 +103,35 @@ class AppointmentController extends Controller
     {
         // $request->validate([
         //     'title' => 'required',
-        //     'username' => 'required',
         //     'sympotm' => 'required',
-        //     'booked' => 'required',
-        //     'Workday' => 'required',
-        //     'date' => 'required',
-        //     'start' => 'required',
-        //     'end' => 'required',
         // ]);
-        $event = new Event;
+    
+        // $event->update($request->all());
+        // $event = new Event;
         $event->title =  $request->title;
+        $event->sympotm =  $request->sympotm;
         $event->date = $request->date ;
         $event->start = $request->start = $request->date;
         $event->end = $request->end = date('Y-m-d H:i:s');
         $event->save();
+
+        // dd($event);
     
-        $event->update($request->all());
-    
-        return redirect()->route('appointments.index')
-                        ->with('success','Appointment updated successfully');
+        return redirect()->route('events.index')
+                        ->with('success','Event updated successfully');
     }
     
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Event  $appointment
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event, $id)
-    {   
-        $event = Event::where('id',$id);
+    public function destroy(Event $event)
+    {
         $event->delete();
     
-        return redirect()->route('appointments.index')
-                        ->with('success','Appointment deleted successfully');
+        return redirect()->route('events.index')
+                        ->with('success','Event deleted successfully');
     }
 }

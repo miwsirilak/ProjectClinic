@@ -8,7 +8,8 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FullCalendarEventMasterController;
 use App\Http\Controllers\FullCalendarAppointmentController;
-
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\EventController;
 
 
 /*
@@ -30,12 +31,14 @@ use App\Http\Controllers\FullCalendarAppointmentController;
 Route::resource('posts', PostCRUDController::class);
 Route::get('/', [PostCRUDController::class, 'index']);
 
-  
 Route::resource('patients', PatientController::class);
+//test
+Route::resource('bookings', BookingController::class);
+Route::resource('events', EventController::class);
 
 Route::resource('appointments', AppointmentController::class);
 
-// Route::get('appointments/{event}', AppointmentController::class, 'update')->name('appointments.update');
+// Route::get('bookings/{event}', BookingController::class, 'edit')->name('bookings.edit');
 // Route::get('appointments', [AppointmentController::class, 'create'])->name('appointments.create');
 // Route::get('appointments', [AppointmentController::class, 'dataTable'])->name('appointments.index');
 // Route::post('appointments', [AppointmentController::class, 'store'])->name('appointments.store');
@@ -61,7 +64,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){
 
 //fullcalender
 // Route::resource('fullcalendareventmaster', FullCalendarEventMasterController::class);
-Route::get('/fullcalendareventmaster',[FullCalendarEventMasterController::class,'index']);
+Route::get('/fullcalendareventmaster',[FullCalendarEventMasterController::class,'index'])->name('fullcalendarDates');
 Route::post('/fullcalendareventmaster/create',[FullCalendarEventMasterController::class,'create']);
 Route::post('/fullcalendareventmaster/update',[FullCalendarEventMasterController::class,'update']);
 Route::post('/fullcalendareventmaster/delete',[FullCalendarEventMasterController::class,'destroy']);

@@ -584,7 +584,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">ข้อมูลแพทย์</h6>
                         <a class="collapse-item" href="{{ route('dermatologist') }}">ประวัติแพทย์</a>
-                        <a class="collapse-item" href="{{ route('calen') }}">ตารางการทำงานของแพทย์</a>
+                        <a class="collapse-item" href="{{ route('fullcalendarDates') }}">ตารางการทำงานของแพทย์</a>
                     </div>
                 </div>
             </li>
