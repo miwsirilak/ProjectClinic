@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Auth;
 
 class EventController extends Controller
 {
@@ -56,10 +57,12 @@ class EventController extends Controller
         //     'title' => 'required',
         //     'sympotm' => 'required',
         // ]);
-    
+    // dd(Auth::user());
         // Event::create($request->all());
         $event = new Event;
         $event->title =  $request->title;
+        $event->userid = Auth::user()->id;
+        $event->username = Auth::user()->name;
         $event->sympotm =  $request->sympotm;
         $event->date = $request->date ;
         $event->start = $request->start = $request->date;

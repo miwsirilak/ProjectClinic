@@ -484,7 +484,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">รายการ:</h6>
-                        <a class="collapse-item" href="{{ route('events.index') }}">ตารางนัดหมายแพทย์</a>
+                        <a class="collapse-item" href="{{ route('events.index') }}">ประวัติการนัดหมายแพทย์</a>
                         <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
                         {{-- <a class="collapse-item" href="{{ route('sliding') }}">เลื่อนวันนัด</a>
                         <a class="collapse-item" href="{{ route('cancle') }}">ยกเลิกวันนัด</a> --}}

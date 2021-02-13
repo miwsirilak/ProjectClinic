@@ -40,11 +40,16 @@ Route::resource('bookings', BookingController::class);
 
 
 // Route::resource('events', EventController::class);
-Route::resource('events', EventController::class)->names([
-    'index' => 'events.index',
-    'create' => 'events.create'
-]);
+//ต้อง login ก่อนถึงจองได้ (เด้งหน้า login)
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    // Route::get('/user/dashboard', UserDashboardComponent::class)->name('user.dashboard');
 
+    Route::resource('events', EventController::class)->names([
+        'index' => 'events.index',
+        'create' => 'events.create',
+        // 'indexadmin' => 'events.indexadmin'
+    ]);
+});
 
 // Route::get('bookings/{event}', BookingController::class, 'edit')->name('bookings.edit');
 // Route::get('appointments', [AppointmentController::class, 'create'])->name('appointments.create');

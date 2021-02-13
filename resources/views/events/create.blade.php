@@ -57,7 +57,7 @@
             </div>
 
         </form> --}}
-
+        @if (Auth::user())
         <div class="card">
             <h5 class="card-header text-white" style="background-color:#46a7a2;">นัดหมายแพทย์</h5>
             <div class="card-body" style="background-color:#e8ecec;">
@@ -68,7 +68,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>ชื่อ:</strong>
-                                <input type="text" name="title" class="form-control" placeholder="ชื่อ">
+                                <input type="text" name="title" class="form-control" placeholder="ชื่อ" value="{{ Auth::user()->name }}">
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <label for="party"><strong>วันที่:</strong>
                                     {{-- <input type="date" value="2021-01-01" name="date" class="form-control"> --}}
-                                    <input type="date" value=" " name="date" class="form-control">
+                                    <input type="date" value="" name="date" class="form-control">
                                 </label>
                             </div>
                         </form>
@@ -98,6 +98,7 @@
 
             </div>
         </div>
+        @endif
 
     @endsection
 

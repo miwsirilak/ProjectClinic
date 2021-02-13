@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
 </head>
 
-<body style="background-color:#acf8ee;">
+<body style="background-color:#ffffff;">
     <br>
     <div class="container">
         @if ($message = Session::get('success'))
