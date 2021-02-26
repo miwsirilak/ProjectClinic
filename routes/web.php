@@ -10,6 +10,7 @@ use App\Http\Controllers\FullCalendarEventMasterController;
 use App\Http\Controllers\FullCalendarAppointmentController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -31,6 +32,11 @@ use App\Http\Controllers\EventController;
 Route::resource('posts', PostCRUDController::class);
 Route::get('/', [PostCRUDController::class, 'index']);
 
+//เพิ่มข้อมูลผู้ป่วย
+Route::resource('users', UserController::class)->names([
+    'index' => 'users.index',
+]);
+
 Route::resource('patients', PatientController::class);
 
 //ไม่น่าเอา
@@ -47,7 +53,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::resource('events', EventController::class)->names([
         'index' => 'events.index',
         'create' => 'events.create',
-        // 'indexadmin' => 'events.indexadmin'
     ]);
 });
 

@@ -82,6 +82,19 @@
                                 <label for="party"><strong>วันที่:</strong>
                                     <input type="date" value="{{ $event->date }}" name="date" class="form-control">
                                 </label>
+
+                                {{-- <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="booked" id="inlineRadio1" value="{{ $event->date }}">
+                                    <label class="form-check-label" for="inlineRadio1">จองคิว</label>
+                                </div> --}}
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="booked" id="booked"
+                                        value="จองแล้ว" checked>
+                                    <label class="form-check-label" for="booked">
+                                        จองคิว
+                                    </label>
+                                </div>
                             </div>
                         </form>
 

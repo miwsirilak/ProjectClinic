@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('sympotm')->nullable();
             $table->string('booked')->nullable();
             $table->string('Workday')->nullable();
-            $table->date('date')->nullable();
+            $table->date('date');
             $table->dateTime('start')->nullable();
             $table->dateTime('end')->nullable();
             $table->timestamps();

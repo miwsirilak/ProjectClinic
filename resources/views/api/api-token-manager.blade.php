@@ -1,4 +1,4 @@
-{{-- <div>
+<div>
     <!-- Generate API Token -->
     <x-jet-form-section submit="createApiToken">
         <x-slot name="title">
@@ -164,4 +164,4 @@
             </x-jet-danger-button>
         </x-slot>
     </x-jet-confirmation-modal>
-</div> --}}
+</div>

@@ -14,6 +14,9 @@
 <body style="background-color:#ffffff;">
     <br>
     <div class="container">
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+            <a class="btn btn-success" href="/">กลับสู่หน้าหลัก</a>
+        </div> <br>
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
@@ -21,10 +24,6 @@
         @endif
         <div class="response alert alert-success mt-2" style="display: none;"></div>
         <div id='calendar'></div>
-    </div>
-    <br>
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <a class="btn btn-success" href="/">กลับสู่หน้าหลัก</a>
     </div>
 </body>
 
@@ -39,66 +38,71 @@
         });
 
         var calendar = $('#calendar').fullCalendar({
+
             // ล็อกการจองคิว
-            defaultView: 'month',
-            selectable: true,
-            defaultTimedEventDuration: '00:15:00',
-            minTime: "08:00:00",
-            maxTime: "17:00:00",
-            slotDuration: '00:15:00',
-            slotLabelInterval: 15,
-            slotLabelFormat: 'h(:mm)a',
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                // right: 'agendaDay,agendaWeek,listDay'
-                right: 'agendaDay,agendaWeek,agendaMonth'
-            },
-            businessHours: [{
-                dow: [1, 2, 3, 4, 5], // Monday - Friday
-                start: '08:00',
-                end: '12:00',
-            }, {
-                dow: [1, 2, 3, 4, 5], // Monday - Friday (if adding lunch hours)
-                start: '13:00',
-                end: '17:00',
-            }],
-            selectConstraint: "businessHours",
-            select: function(start, end, jsEvent, view) {
-                if (start.isAfter(moment())) {
-                    var eventTitle = prompt("Provide Event Title");
-                    if (eventTitle) {
-                        $("#calendar").fullCalendar('renderEvent', {
-                            title: eventTitle,
-                            start: start,
-                            end: end,
-                            stick: true
-                        });
-                        alert('Appointment booked at: ' + start.format("h(:mm)a"));
-                    }
-                } else {
-                    alert('Cannot book an appointment in the past');
-                }
-            },
-            eventClick: function(calEvent, jsEvent, view) {
-                alert('Event: ' + calEvent.title);
-            },
+            // defaultView: 'month',
+            // selectable: true,
+            // defaultTimedEventDuration: '00:15:00',
+            // minTime: "08:00:00",
+            // maxTime: "17:00:00",
+            // slotDuration: '00:15:00',
+            // slotLabelInterval: 15,
+            // slotLabelFormat: 'h(:mm)a',
+            // header: {
+            //     left: 'prev,next today',
+            //     center: 'title',
+            //     // right: 'agendaDay,agendaWeek,listDay'
+            //     right: 'agendaDay,agendaWeek,agendaMonth'
+            // },
+            // businessHours: [{
+            //     dow: [1, 2, 3, 4, 5], // Monday - Friday
+            //     start: '08:00',
+            //     end: '12:00',
+            // }, {
+            //     dow: [1, 2, 3, 4, 5], // Monday - Friday (if adding lunch hours)
+            //     start: '13:00',
+            //     end: '17:00',
+            // }],
+
+            // selectConstraint: "businessHours",
+            // select: function(start, end, jsEvent, view) {
+            //     if (start.isAfter(moment())) {
+            //         var eventTitle = prompt("Provide Event Title");
+            //         if (eventTitle) {
+            //             $("#calendar").fullCalendar('renderEvent', {
+            //                 title: eventTitle,
+            //                 start: start,
+            //                 end: end,
+            //                 stick: true
+            //             });
+            //             alert('Appointment booked at: ' + start.format("h(:mm)a"));
+            //         }
+            //     } else {
+            //         alert('Cannot book an appointment in the past');
+            //     }
+            // },
+            // eventClick: function(calEvent, jsEvent, view) {
+            //     alert('Event: ' + calEvent.title);
+            // },
             // ล็อกการจองคิว
 
             // height: 650,
             height: 550,
+            eventColor: 'pink',
+            eventTextColor: 'black',
             showNonCurrentDates: false,
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 // right: 'month,agendaWeek,agendaDay'
-                right: 'month'
+                right: 'month,listYear'
             },
             // editable: true,
             // defaultView: 'month',
             events: SITEURL + "/fullcalendareventmaster",
             displayEventTime: false,
             editable: true,
+
             eventRender: function(event, element, view) {
                 if (event.allDay === 'true') {
                     event.allDay = true;
@@ -106,6 +110,7 @@
                     event.allDay = false;
                 }
             },
+
             selectable: true,
             selectHelper: true,
             select: function(start, end, allDay) {

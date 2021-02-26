@@ -602,6 +602,11 @@
                         <h6 class="collapse-header">รายการ:</h6>
                         {{-- <a class="collapse-item" href="{{route('login')}}">เข้าสู่ระบบ</a>
             <a class="collapse-item" href="{{route('register')}}">ลงทะเบียนผู้ป่วยรายใหม่</a> --}}
+                        @if (Auth::user()) {{-- ถ้าไม่ login ก็จะไม่เห็น --}}
+                            @if (Auth::user()->role === 'admin') {{-- ถ้าตัวเองเป็นคนจอง ก็จะเห็นประวัติจองของทุกคน --}}
+                                <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อผู้ป่วย</a>
+                            @endif
+                        @endif
                         <a class="collapse-item" href="{{ route('events.index') }}">ประวัติการนัดหมายแพทย์</a>
                         <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
                         {{-- <a class="collapse-item" href="{{ route('sliding') }}">เลื่อนวันนัด</a>

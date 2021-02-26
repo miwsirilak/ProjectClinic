@@ -29,7 +29,8 @@ class EventController extends Controller
     //      $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
     //      $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
  
-    //      $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
+    //      $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','booked','start', 'end']);
+    //      dd(json($data));
     //      return Response::json($data);
     //     }
     //     return view('fullcalendarDates');
@@ -64,6 +65,7 @@ class EventController extends Controller
         $event->userid = Auth::user()->id;
         $event->username = Auth::user()->name;
         $event->sympotm =  $request->sympotm;
+        $event->booked = $request->booked;
         $event->date = $request->date ;
         $event->start = $request->start = $request->date;
         $event->end = $request->end = date('Y-m-d H:i:s');
@@ -76,7 +78,7 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)
@@ -113,6 +115,7 @@ class EventController extends Controller
         // $event = new Event;
         $event->title =  $request->title;
         $event->sympotm =  $request->sympotm;
+        $event->booked = $request->booked;
         $event->date = $request->date ;
         $event->start = $request->start = $request->date;
         $event->end = $request->end = date('Y-m-d H:i:s');
@@ -125,7 +128,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function destroy(Event $event)

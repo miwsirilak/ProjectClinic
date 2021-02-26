@@ -33,6 +33,7 @@
                         <th>ลำดับ</th>
                         <th>ชื่อ</th>
                         <th>อาการ</th>
+                        <th>สถานะการจอง</th>
                         <th>วันที่</th>
                         <th width="280px">เลื่อนวันนัด | ยกเลิกวันนัด</th>
                     </tr>
@@ -41,6 +42,7 @@
                             <td>{{ ++$i }}</td>
                             <td>{{ $event->title }}</td>
                             <td>{{ $event->sympotm }}</td>
+                            <td>{{ $event->booked }}</td>
                             <td>{{ $event->date }}</td>
                             <td>
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST">
@@ -100,7 +102,7 @@
 
 
         {{-- ประวัติการนัดหมายแพทย์ (สำหรับผู้ที่ไม่ได้จอง) --}}
-        @if (Auth::user()) 
+        {{-- @if (Auth::user()) 
             @if (Auth::user()->role !== 'admin')
                 @if (Auth::user()->name !== $event->username) 
                     <div class="card text-center" style="width: 67rem; height: 20rem;">
@@ -112,7 +114,7 @@
                     <br>
                 @endif
             @endif
-        @endif
+        @endif --}}
         {{-- ประวัติการนัดหมายแพทย์ (สำหรับผู้ที่ไม่ได้จอง) --}}
 
     @endsection
