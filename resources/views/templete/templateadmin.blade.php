@@ -12,6 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    {{-- fullcalendar --}}
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js') }}"></script>
+
     {{-- templat --}}
 
     <title>@yield('Piyarat skin Clinic')</title>
@@ -20,11 +23,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     {{-- templat --}}
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     {{-- templat --}}
 
     <!-- Styles -->
@@ -421,7 +424,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        {{-- style="background-color:#13ce96;" --}}
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#27a7e2;">
 
             <!-- Sidebar - Brand -->
             <br>
@@ -453,8 +457,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+            {{-- อาจจะเอา --}}
             <div class="sidebar-heading">
-                Interface
+                {{-- Interface --}}
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -466,9 +471,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">ข้อมูลแพทย์</h6>
-                        <a class="collapse-item" href="{{ route('dermatologist') }}">ประวัติแพทย์</a>
-                        <a class="collapse-item" href="{{ route('fullcalendarDates') }}">ตารางการทำงานของแพทย์</a>
+                        <h6 class="collapse-header">รายการ:</h6>
+                        <a class="collapse-item" href="{{ route('dermatologist') }}">ข้อมูลแพทย์</a>
+                        <a class="collapse-item" href="{{ route('fullcalendarworkingday') }}">ตารางการทำงานของแพทย์</a>
                     </div>
                 </div>
             </li>
@@ -477,14 +482,19 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>ผู้ป่วย</span>
+                    <i class="fas fa-poll-h"></i>
+                    <span>จัดการนัดหมาย</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">รายการ:</h6>
-                        <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อผู้ป่วย</a>
+                        @if (Auth::user())
+                            @if (Auth::user()->role === 'admin')
+                                <a class="collapse-item" href="{{ route('fullcalendarworkingday') }}">กำหนดวันหยุด</a>
+                                <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อผู้ป่วย</a>
+                            @endif
+                        @endif
                         <a class="collapse-item" href="{{ route('events.index') }}">ประวัติการนัดหมายแพทย์</a>
                         <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
                         {{-- <a class="collapse-item" href="{{ route('sliding') }}">เลื่อนวันนัด</a>
@@ -497,8 +507,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+            {{-- อาจจะเอา --}}
             <div class="sidebar-heading">
-                Addons
+                {{-- Addons --}}
             </div>
 
             <!-- Nav Item - Charts -->
@@ -516,11 +527,11 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('chat') }}">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>ติดต่อสอบถาม</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -548,18 +559,18 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn" type="button" style="background-color:#27a7e2;">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -634,11 +645,11 @@
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" title="Dashboard"
+                                            {{-- <a class="dropdown-item" title="Dashboard"
                                                 href="{{ route('admin.dashboard') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Dashboard
-                                            </a>
+                                            </a> --}}
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -661,11 +672,11 @@
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" title="Dashboard"
+                                            {{-- <a class="dropdown-item" title="Dashboard"
                                                 href="{{ route('user.dashboard') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Dashboard
-                                            </a>
+                                            </a> --}}
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -703,21 +714,22 @@
                         </div>
 
                         <!-- Content Row -->
-                        
+
                         <div class="row">
                             @yield('content')
-                            
+
 
 
                             <!-- Footer -->
-                            <footer class="sticky-footer bg-white">
+                            {{-- ส่วนข้างล่าง --}}
+                            {{-- <footer class="sticky-footer bg-white">
                                 <div class="container my-auto">
                                     <div class="copyright text-center my-auto">
                                         <span>คลินิกโรคผิวหนัง แพทย์หญิง ปิยะรัตน์ Line:0655639744s โทร 065 563 9744</span>
                                         <span><a href="https://maps.app.goo.gl/LgQSMMeAazCbRyA97">ที่ตั้งคลินิก</a></span>
                                     </div>
                                 </div>
-                            </footer>
+                            </footer> --}}
                             <!-- End of Footer -->
 
                         </div>
@@ -753,21 +765,24 @@
                     </div>
 
                     <!-- Bootstrap core JavaScript-->
-                    <script src="{{ asset('vendor/jquery/jquery.min.js')}}"></script>
-                    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+                    {{-- jquery.min.js ทับ fullcalendar --}}
+                    {{-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> --}}
+                    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
                     <!-- Core plugin JavaScript-->
-                    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+                    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
                     <!-- Custom scripts for all pages-->
-                    <script src="{{ asset('js/sb-admin-2.min.js')}}"></script>
+                    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
                     <!-- Page level plugins -->
-                    <script src="{{ asset('vendor/chart.js/Chart.min.js')}}"></script>
+                    {{-- ลองเอาออกเพราะ error --}}
+                    {{-- <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script> --}}
 
                     <!-- Page level custom scripts -->
-                    <script src="{{ asset('js/demo/chart-area-demo.js')}}"></script>
-                    <script src="{{ asset('js/demo/chart-pie-demo.js')}}"></script>
+                    {{-- ลองเอาออกเพราะ error --}}
+                    {{-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+                    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> --}}
                     {{-- templat --}}
 
 

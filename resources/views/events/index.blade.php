@@ -8,12 +8,17 @@
 
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>การนัดหมายแพทย์</h2>
+                <div class="pull-left text-info" >
+                    <h3>ประวัติการนัดหมายแพทย์</h3>
                 </div>
                 <div class="pull-right">
-                    <a class="btn btn-success" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
-                    <a class="btn btn-warning" href="{{ route('fullcalendarDates') }}">ปฎิทินการนัดหมายแพทย์</a>
+                    <a class="btn btn-Warning" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
+
+                    @if (Auth::user())
+                        @if (Auth::user()->role === 'admin')
+                            <a class="btn btn-info" href="{{ route('fullcalendarDates') }}">ปฎิทินการนัดหมายแพทย์</a>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>
@@ -55,7 +60,9 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger">ยกเลิกวันนัด</button>
+                                    {{-- <button type="submit" class="btn btn-danger">ยกเลิกวันนัด</button> --}}
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('ท่านต้องการยกเลิกวันนัดใช่หรือไม่ ?')">ยกเลิกวันนัด</button>
                                 </form>
                             </td>
                         </tr>
@@ -72,8 +79,8 @@
         @foreach ($events as $event)
             @if (Auth::user()) {{-- ถ้าไม่ login ก็จะไม่เห็น --}}
                 @if (Auth::user()->name === $event->username) {{-- ถ้าตัวเองเป็นคนจอง ก็จะเห็นประวัติตัวเองจอง --}}
-                    <div class="card text-center" style="background-color:#fffbdb;">
-                        <div class="card-header text-white" style="background-color:#eca3a3;">
+                    <div class="card text-center" style="background-color:#ffffff;">
+                        <div class="card-header text-white" style="background-color:#e99292;">
                             ประวัติการนัดหมายแพทย์
                             {{-- {{ $event->username }} {{ Auth::user()->name }} --}}
                         </div>
@@ -83,14 +90,16 @@
                             <p class="card-text">อาการ : {{ $event->sympotm }}</p>
                             <p class="card-text">วันที่จอง : {{ $event->date }}</p>
                         </div>
-                        <div class="card-footer text-muted" style="background-color:#eca3a3;">
+                        <div class="card-footer text-muted" style="background-color:#e5e9e9;">
                             <form action="{{ route('events.destroy', $event->id) }}" method="POST">
                                 <a class="btn btn-primary" href="{{ route('events.edit', $event->id) }}">เลื่อนวันนัด</a>
 
                                 @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger">ยกเลิกวันนัด</button>
+                                {{-- <button type="submit" class="btn btn-danger">ยกเลิกวันนัด</button> --}}
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('ท่านต้องการยกเลิกวันนัดใช่หรือไม่ ?')">ยกเลิกวันนัด</button>
                             </form>
                         </div>
                     </div>

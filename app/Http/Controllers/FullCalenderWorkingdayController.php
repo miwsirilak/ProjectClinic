@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Event;
+use App\Models\Workingday;
 use Redirect,Response;
 
-class FullCalendarEventMasterController extends Controller
+class FullCalenderWorkingdayController extends Controller
 {
     public function index()
     {
@@ -16,17 +16,10 @@ class FullCalendarEventMasterController extends Controller
          $start = (!empty($_GET["start"])) ? ($_GET["start"]) : ('');
          $end = (!empty($_GET["end"])) ? ($_GET["end"]) : ('');
  
-         $data = Event::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','booked','start', 'end']);
-         //dd(json($data));
-         //test
-        //  foreach ($data as $test){
-        //    $test['title'] = "tesT";
-        // }
+         $data = Workingday::whereDate('start', '>=', $start)->whereDate('end',   '<=', $end)->get(['id','title','start', 'end']);
          return Response::json($data);
-        //  echo ($data);
-        // dd(Response::json($data));
         }
-        return view('fullcalendarDates');
+        return view('fullcalendarworkingday');
     }
     
    
@@ -36,7 +29,7 @@ class FullCalendarEventMasterController extends Controller
                        'start' => $request->start,
                        'end' => $request->end
                     ];
-        $event = Event::insert($insertArr);   
+        $event = Workingday::insert($insertArr);   
         return Response::json($event);
     }
      
@@ -45,7 +38,7 @@ class FullCalendarEventMasterController extends Controller
     {   
         $where = array('id' => $request->id);
         $updateArr = ['title' => $request->title,'start' => $request->start, 'end' => $request->end];
-        $event  = Event::where($where)->update($updateArr);
+        $event  = Workingday::where($where)->update($updateArr);
  
         return Response::json($event);
     } 
@@ -53,7 +46,7 @@ class FullCalendarEventMasterController extends Controller
  
     public function destroy(Request $request)
     {
-        $event = Event::where('id',$request->id)->delete();
+        $event = Workingday::where('id',$request->id)->delete();
    
         return Response::json($event);
     }

@@ -12,6 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    {{-- fullcalendar --}}
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js') }}"></script>
+
     {{-- templat --}}
 
     <title>Clinic</title>
@@ -529,8 +532,9 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar  bg-gradient-primary-->
+        {{-- style="background-color:#13ce96;" --}}
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#27a7e2;">
 
             <!-- Sidebar - Brand -->
             <!-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -569,8 +573,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+            {{-- อาจจะเอา --}}
             <div class="sidebar-heading">
-                Interface
+                {{-- Interface --}}
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -582,9 +587,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">ข้อมูลแพทย์</h6>
-                        <a class="collapse-item" href="{{ route('dermatologist') }}">ประวัติแพทย์</a>
-                        <a class="collapse-item" href="{{ route('fullcalendarDates') }}">ตารางการทำงานของแพทย์</a>
+                        <h6 class="collapse-header">รายการ:</h6>
+                        <a class="collapse-item" href="{{ route('dermatologist') }}">ข้อมูลแพทย์</a>
+                        <a class="collapse-item" href="{{ route('fullcalendarworkingday') }}">ตารางการทำงานของแพทย์</a>
                     </div>
                 </div>
             </li>
@@ -593,8 +598,8 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>ผู้ป่วย</span>
+                    <i class="fas fa-poll-h"></i>
+                    <span>จัดการนัดหมาย</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -602,8 +607,9 @@
                         <h6 class="collapse-header">รายการ:</h6>
                         {{-- <a class="collapse-item" href="{{route('login')}}">เข้าสู่ระบบ</a>
             <a class="collapse-item" href="{{route('register')}}">ลงทะเบียนผู้ป่วยรายใหม่</a> --}}
-                        @if (Auth::user()) {{-- ถ้าไม่ login ก็จะไม่เห็น --}}
-                            @if (Auth::user()->role === 'admin') {{-- ถ้าตัวเองเป็นคนจอง ก็จะเห็นประวัติจองของทุกคน --}}
+                        @if (Auth::user())
+                            @if (Auth::user()->role === 'admin')
+                                <a class="collapse-item" href="{{ route('fullcalendarworkingday') }}">กำหนดวันหยุด</a>
                                 <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อผู้ป่วย</a>
                             @endif
                         @endif
@@ -619,8 +625,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
+            {{-- อาจจะเอา --}}
             <div class="sidebar-heading">
-                Addons
+                {{-- Addons --}}
             </div>
 
             <!-- Nav Item - Charts -->
@@ -638,11 +645,11 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('chat') }}">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>ติดต่อสอบถาม</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -670,18 +677,19 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary " type="button">
+                                <button class="btn" type="button" style="background-color:#27a7e2;">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -834,11 +842,11 @@
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" title="Dashboard"
+                                            {{-- <a class="dropdown-item" title="Dashboard"
                                                 href="{{ route('admin.dashboard') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Dashboard
-                                            </a>
+                                            </a> --}}
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -861,11 +869,11 @@
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" title="Dashboard"
+                                            {{-- <a class="dropdown-item" title="Dashboard"
                                                 href="{{ route('user.dashboard') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 Dashboard
-                                            </a>
+                                            </a> --}}
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -994,7 +1002,7 @@
                                         {{-- <h2>Post</h2> --}}
                                     </div>
                                     <div class="pull-right mb-2">
-                                        <a class="btn btn-success" href="{{ route('posts.create') }}">
+                                        <a class="btn btn-warning " href="{{ route('posts.create') }}">
                                             เพิ่มความรู้หรือข่าวสาร</a>
                                     </div>
                                 </div>
@@ -1028,10 +1036,14 @@
                                                 @if (Auth::user()->role === 'admin')
                                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('posts.edit', $post->id) }}">Edit</a>
+                                                            href="{{ route('posts.edit', $post->id) }}">แก้ไขข้อมูลข่าวสาร</a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                        {{-- <button type="submit"
+                                                            class="btn btn-danger">ลบข้อมูลข่าวสาร</button> --}}
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('ท่านต้องการยกเลิกวันนัดใช่หรือไม่ ?')">ลบข้อมูลข่าวสาร</button>
+
                                                     </form>
                                                 @endif
                                             @endif
@@ -1046,14 +1058,15 @@
                     {{-- post --}}
 
                     <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
+                    {{-- ส่วนข้างล่าง --}}
+                    {{-- <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
                                 <span>คลินิกโรคผิวหนัง แพทย์หญิง ปิยะรัตน์ Line:0655639744s โทร 065 563 9744</span>
                                 <span><a href="https://maps.app.goo.gl/LgQSMMeAazCbRyA97">ที่ตั้งคลินิก</a></span>
                             </div>
                         </div>
-                    </footer>
+                    </footer> --}}
                     <!-- End of Footer -->
 
                 </div>
@@ -1088,21 +1101,24 @@
             </div>
 
             <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            {{-- jquery.min.js ทับ fullcalendar --}}
+            {{-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> --}}
+            <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
             <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
             <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
+            <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
             <!-- Page level plugins -->
-            <script src="vendor/chart.js/Chart.min.js"></script>
+            {{-- ลองเอาออกเพราะ error --}}
+            {{-- <script src="vendor/chart.js/Chart.min.js"></script> --}}
 
             <!-- Page level custom scripts -->
-            <script src="js/demo/chart-area-demo.js"></script>
-            <script src="js/demo/chart-pie-demo.js"></script>
+            {{-- ลองเอาออกเพราะ error --}}
+            {{-- <script src="js/demo/chart-area-demo.js"></script>
+            <script src="js/demo/chart-pie-demo.js"></script> --}}
             {{-- templat --}}
 
 

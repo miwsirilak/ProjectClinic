@@ -63,7 +63,7 @@
 
         <div class="card">
             <h5 class="card-header text-white" style="background-color:#46a7a2;">เลื่อนวันนัดหมาย</h5>
-            <div class="card-body" style="background-color:#ffffcd;">
+            <div class="card-body" style="background-color:#e8ecec;">
                 <form action="{{ route('events.update', $event->id) }}" method="POST">
                     @csrf
                     @method('PUT')

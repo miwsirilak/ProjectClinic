@@ -8,10 +8,11 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\FullCalendarEventMasterController;
 use App\Http\Controllers\FullCalendarAppointmentController;
+use App\Http\Controllers\FullCalenderWorkingdayController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\WorkingdayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,14 @@ use App\Http\Controllers\UserController;
 // Route::get('/', function () {
     //     return view('welcome');
     // });
+    
+    
+//วัยหยุด
+Route::resource('workingdays', WorkingdayController::class)->names([
+    'index' => 'workingdays.index',
+]);
 
-
+//เพิ่มข้อมูลข่าวสาร
 Route::resource('posts', PostCRUDController::class);
 Route::get('/', [PostCRUDController::class, 'index']);
 
@@ -83,7 +90,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function(){
 //fullcalender
 // Route::resource('fullcalendareventmaster', FullCalendarEventMasterController::class);
 Route::get('/fullcalendareventmaster',[FullCalendarEventMasterController::class,'index'])->name('fullcalendarDates');
-Route::post('/fullcalendareventmaster/create',[FullCalendarEventMasterController::class,'create']);
+Route::get('/fullcalendareventmaster/create',[FullCalendarEventMasterController::class,'create']);
 Route::post('/fullcalendareventmaster/update',[FullCalendarEventMasterController::class,'update']);
 Route::post('/fullcalendareventmaster/delete',[FullCalendarEventMasterController::class,'destroy']);
 
@@ -92,6 +99,12 @@ Route::get('/FullCalendarAppointment',[FullCalendarAppointmentController::class,
 Route::post('/FullCalendarAppointment/create',[FullCalendarAppointmentController::class,'create']);
 Route::post('/FullCalendarAppointment/update',[FullCalendarAppointmentController::class,'update']);
 Route::post('/FullCalendarAppointment/delete',[FullCalendarAppointmentController::class,'destroy']);
+
+//fullcalender วันหยุด
+Route::get('/fullcalendarworkingday',[FullCalenderWorkingdayController::class,'index'])->name('fullcalendarworkingday');
+Route::post('/fullcalendarworkingday/create',[FullCalenderWorkingdayController::class,'create']);
+Route::post('/fullcalendarworkingday/update',[FullCalenderWorkingdayController::class,'update']);
+Route::post('/fullcalendarworkingday/delete',[FullCalenderWorkingdayController::class,'destroy']);
 
 
 // test

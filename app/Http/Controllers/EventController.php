@@ -67,6 +67,7 @@ class EventController extends Controller
         $event->sympotm =  $request->sympotm;
         $event->booked = $request->booked;
         $event->date = $request->date ;
+        $event->Workday = $request->Workday;
         $event->start = $request->start = $request->date;
         $event->end = $request->end = date('Y-m-d H:i:s');
         $event->save();
@@ -116,7 +117,8 @@ class EventController extends Controller
         $event->title =  $request->title;
         $event->sympotm =  $request->sympotm;
         $event->booked = $request->booked;
-        $event->date = $request->date ;
+        $event->date = $request->date;
+        $event->Workday = $request->Workday;
         $event->start = $request->start = $request->date;
         $event->end = $request->end = date('Y-m-d H:i:s');
         $event->save();
