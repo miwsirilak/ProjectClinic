@@ -28,15 +28,14 @@
             <div class="card-body">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="{{ Storage::url($post->image) }}" class="card-img" alt="..."
-                            height="200" width="300">
+                        <img src="{{ Storage::url($post->image) }}" class="card-img" alt="..." height="200"
+                            width="300">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ $post->description }}</p>
-                            <p class="card-text"><small
-                                    class="text-muted">{{ $post->created_at }}</small></p>
+                            <p class="card-text"><small class="text-muted">{{ $post->created_at }}</small></p>
                             @if (Auth::user())
                                 @if (Auth::user()->role === 'admin')
                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
@@ -44,7 +43,9 @@
                                             href="{{ route('posts.edit', $post->id) }}">Edit</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
+                                        <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('ท่านต้องการลบความรู้ข่าวสารใช่หรือไม่ ?')">ยกเลิกวันนัด</button>
                                     </form>
                                 @endif
                             @endif

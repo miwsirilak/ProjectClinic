@@ -59,7 +59,7 @@ class PostCRUDController extends Controller
 
      
         return redirect()->route('posts.index')
-                        ->with('success','Post has been created successfully.');
+                        ->with('success','เพิ่มความรู้ข่าวสารเรียบร้อยแล้ว');
     }
      
     /**
@@ -113,7 +113,7 @@ class PostCRUDController extends Controller
         $post->save();
     
         return redirect()->route('posts.index')
-                        ->with('success','Post updated successfully');
+                        ->with('success','แก้ไขความรู้ข่าวสารเรียบร้อยแล้ว');
     }
     
     /**
@@ -127,6 +127,6 @@ class PostCRUDController extends Controller
         $post->delete();
     
         return redirect()->route('posts.index')
-                        ->with('success','Post has been deleted successfully');
+                        ->with('success','ลบความรู้ข่าวสารเรียบร้อยแล้ว');
     }
 }

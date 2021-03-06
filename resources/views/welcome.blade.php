@@ -1003,7 +1003,7 @@
                                     </div>
                                     <div class="pull-right mb-2">
                                         <a class="btn btn-warning " href="{{ route('posts.create') }}">
-                                            เพิ่มความรู้หรือข่าวสาร</a>
+                                            เพิ่มความรู้ข่าวสาร</a>
                                     </div>
                                 </div>
                             @endif
@@ -1019,7 +1019,7 @@
                     @foreach ($posts as $post)
                         <div class="card border-success">
                             {{-- <h5 class="card-header text-primary">ความรู้ข่าวสาร</h5> --}}
-                            <div class="card-header h6 mb-0 font-weight-bold text-gray-800">นัดหมายแพทย์</div>
+                            <div class="card-header h6 mb-0 font-weight-bold text-gray-800">ความรู้ข่าวสาร</div>
                             <div class="card-body">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
@@ -1036,13 +1036,13 @@
                                                 @if (Auth::user()->role === 'admin')
                                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('posts.edit', $post->id) }}">แก้ไขข้อมูลข่าวสาร</a>
+                                                            href="{{ route('posts.edit', $post->id) }}">แก้ไขความรู้ข่าวสาร</a>
                                                         @csrf
                                                         @method('DELETE')
                                                         {{-- <button type="submit"
                                                             class="btn btn-danger">ลบข้อมูลข่าวสาร</button> --}}
                                                         <button type="submit" class="btn btn-danger"
-                                                            onclick="return confirm('ท่านต้องการยกเลิกวันนัดใช่หรือไม่ ?')">ลบข้อมูลข่าวสาร</button>
+                                                            onclick="return confirm('ท่านต้องการลบความรู้ข่าวสารหรือไม่ ?')">ลบความรู้ข่าวสาร</button>
 
                                                     </form>
                                                 @endif

@@ -1,8 +1,8 @@
-{{-- @extends('templete.templateadmin')
+@extends('templete.templateadmin')
 
 @section('title', 'Base page')
 
-@section('content') --}}
+@section('content')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,9 +78,9 @@
         </form>
     </div> --}}
 
-    <div class="card border-success bg-light mb-3 " style="max-width: 120rem;">
-        <div class="card-header text-white bg-success" ><h4>แก้ไขโพสต์</h4></div>
-        <div class="card-body text-success" >
+    <div class="card border-info bg-light mb-3 " style="max-width: 120rem;">
+        <div class="card-header text-info bg-muted" ><h4>แก้ไขโพสต์</h4></div>
+        <div class="card-body text-info" >
             {{-- <h5 class="card-title">Success card title</h5> --}}
             @if (session('status'))
                 <div class="alert alert-success mb-1 mt-1">
@@ -139,4 +139,4 @@
 
 </html>
 
-{{-- @endsection --}}
+@endsection

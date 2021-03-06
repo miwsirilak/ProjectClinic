@@ -124,7 +124,7 @@ class EventController extends Controller
         $event->save();
     
         return redirect()->route('events.index')
-                        ->with('success','ท่านได้ทำการนัดหมายแพทย์เรียบร้อยแล้ว');
+                        ->with('success','ท่านได้เลื่อนวันนัดหมายแพทย์เรียบร้อยแล้ว');
     }
     
     /**
