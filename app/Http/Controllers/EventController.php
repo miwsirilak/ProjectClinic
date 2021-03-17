@@ -60,6 +60,11 @@ class EventController extends Controller
         // ]);
     // dd(Auth::user());
         // Event::create($request->all());
+
+        // test query
+        // $user = DB::table('users')->where('name', 'John')->first();
+        // $event = workingdays::table('users')->where('name', 'John')->first();
+
         $event = new Event;
         $event->title =  $request->title;
         $event->userid = Auth::user()->id;

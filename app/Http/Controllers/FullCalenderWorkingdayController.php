@@ -25,11 +25,24 @@ class FullCalenderWorkingdayController extends Controller
    
     public function create(Request $request)
     {  
-        $insertArr = [ 'title' => $request->title,
-                       'start' => $request->start,
-                       'end' => $request->end
+        $date = date_create_from_format('Y-m-d H:i:s', $request->start);
+        $date2 = date_create_from_format('Y-m-d H:i:s', $request->end);
+        //echo [$request->start];
+       //echo $request->end;
+       //$insertArr;
+        for( $i = $date; $date< $date2;$date->modify('+1 day')){
+            $insertArr = [ 'title' => $request->title,
+                       'start' => $date,
+                       'end' => $date
                     ];
-        $event = Workingday::insert($insertArr);   
+            $event = Workingday::insert($insertArr);   
+        }
+        //error_log(string($date));
+      /* $insertArr = [ 'title' => $request->title,
+                       'start' => $date,
+                       'end' => $date2
+                    ];
+        $event = Workingday::insert($insertArr);   */
         return Response::json($event);
     }
      
