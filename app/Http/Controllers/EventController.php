@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Models\Workingday;
+// use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -43,7 +46,25 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create');
+        $startday = DB::table('workingdays')->pluck('start');  
+        // $startday = Workingday::where('start', '2021-03-22 00:00:00');
+        // for ($i = 0; $i <$startday.length(); $i++) {
+        //     echo $i;
+        //     dd($i);
+
+        // }  
+
+        // $startday = '2021-03-22 00:00:00';
+        // $list_startday = array($startday);
+        // if(in_array($startday, $list_startday))
+        // {
+        //     dd($startday );
+        // echo "Yes, Your startday: $startday exits in array";
+        // } else{
+        //     dd($startday );
+        // }
+        
+        return view('events.create')->with('start',$startday);
     }
     
     /**
@@ -64,6 +85,35 @@ class EventController extends Controller
         // test query
         // $user = DB::table('users')->where('name', 'John')->first();
         // $event = workingdays::table('users')->where('name', 'John')->first();
+        
+        // $titles = DB::table('workingdays')->pluck('start');
+
+        // foreach ($titles as $title) {
+        //     echo $title;
+        // }
+        // $startday = Workingday::find();
+        // dd($startday);
+
+        // return redirect()->route('events.index')
+        //                 ->with('success','ไม่สามารถนัดหมายแพทย์ได้ เนื่องจากวันที่ท่านเลือกเป็นวันหยุด');
+
+        $date = $request->date;
+        // $date = "2021-03-1";
+        $startday = DB::table('workingdays')->where('start', $date)->get();
+        // dd(count($startday));
+        // print_r($startday);
+        // dd(gettype($startday));
+        if(count($startday) == 1) {
+            // dd($startday, $date,'ตรงกับหมอหยุด');
+            return redirect()->route('events.create')->with('error','ไม่สามารถทำการนัดหมายได้ เนื่องจากวันที่ท่านเลือกตรงกับวันหยุดของคลินิก');
+
+        } else {
+            // dd($startday, $date,'ไม่ตรงกับหมอหยุด');
+
+        // $startday = Carbon::now();
+        //     echo $startday->toDateString();
+
+
 
         $event = new Event;
         $event->title =  $request->title;
@@ -79,6 +129,7 @@ class EventController extends Controller
      
         return redirect()->route('events.index')
                         ->with('success','ท่านได้ทำการนัดหมายแพทย์เรียบร้อยแล้ว');
+        }
     }
      
     /**
@@ -119,6 +170,20 @@ class EventController extends Controller
     
         // $event->update($request->all());
         // $event = new Event;
+
+        $date = $request->date;
+        // $date = "2021-03-1";
+        $startday = DB::table('workingdays')->where('start', $date)->get();
+        // dd(count($startday));
+        // print_r($startday);
+        // dd(gettype($startday));
+        if(count($startday) == 1) {
+            // dd($startday, $date,'ตรงกับหมอหยุด');
+            return redirect()->back()->with('error','ไม่สามารถเลื่อนวันนัดหมายได้ เนื่องจากวันที่ท่านเลือกตรงกับวันหยุดของคลินิก');
+
+        } else {
+
+
         $event->title =  $request->title;
         $event->sympotm =  $request->sympotm;
         $event->booked = $request->booked;
@@ -131,7 +196,7 @@ class EventController extends Controller
         return redirect()->route('events.index')
                         ->with('success','ท่านได้เลื่อนวันนัดหมายแพทย์เรียบร้อยแล้ว');
     }
-    
+}
     /**
      * Remove the specified resource from storage.
      *

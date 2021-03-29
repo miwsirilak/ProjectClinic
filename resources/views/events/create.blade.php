@@ -16,7 +16,16 @@
                 </ul>
             </div>
         @endif
+        @if ($message = Session::get('error'))
+            <div class="alert alert-danger">
+                <p>{{ $message }}</p>
+            </div>
+        @endif
         <br>
+
+        {{-- @foreach ($start as $start)
+        <li>{{ $start }}</li>
+        @endforeach --}}
         
         @if (Auth::user())
             <div class="card">
