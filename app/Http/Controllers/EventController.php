@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\Workingday;
-// use Carbon\Carbon;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -47,23 +47,7 @@ class EventController extends Controller
     public function create()
     {
         $startday = DB::table('workingdays')->pluck('start');  
-        // $startday = Workingday::where('start', '2021-03-22 00:00:00');
-        // for ($i = 0; $i <$startday.length(); $i++) {
-        //     echo $i;
-        //     dd($i);
 
-        // }  
-
-        // $startday = '2021-03-22 00:00:00';
-        // $list_startday = array($startday);
-        // if(in_array($startday, $list_startday))
-        // {
-        //     dd($startday );
-        // echo "Yes, Your startday: $startday exits in array";
-        // } else{
-        //     dd($startday );
-        // }
-        
         return view('events.create')->with('start',$startday);
     }
     
@@ -75,45 +59,18 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'sympotm' => 'required',
-        // ]);
-    // dd(Auth::user());
-        // Event::create($request->all());
-
-        // test query
-        // $user = DB::table('users')->where('name', 'John')->first();
-        // $event = workingdays::table('users')->where('name', 'John')->first();
-        
-        // $titles = DB::table('workingdays')->pluck('start');
-
-        // foreach ($titles as $title) {
-        //     echo $title;
-        // }
-        // $startday = Workingday::find();
-        // dd($startday);
-
-        // return redirect()->route('events.index')
-        //                 ->with('success','ไม่สามารถนัดหมายแพทย์ได้ เนื่องจากวันที่ท่านเลือกเป็นวันหยุด');
-
+        // เช็ควันหยุด
         $date = $request->date;
-        // $date = "2021-03-1";
         $startday = DB::table('workingdays')->where('start', $date)->get();
-        // dd(count($startday));
-        // print_r($startday);
-        // dd(gettype($startday));
+        $dt = Carbon::now();
         if(count($startday) == 1) {
-            // dd($startday, $date,'ตรงกับหมอหยุด');
             return redirect()->route('events.create')->with('error','ไม่สามารถทำการนัดหมายได้ เนื่องจากวันที่ท่านเลือกตรงกับวันหยุดของคลินิก');
 
-        } else {
-            // dd($startday, $date,'ไม่ตรงกับหมอหยุด');
+        }elseif ($date < $dt->toDateString()) {
+            return redirect()->route('events.create')->with('error','ไม่สามารถทำการนัดหมายได้ กรุณาเลือกวันถัดไป');
+            // echo $dt->toDateString(); 
 
-        // $startday = Carbon::now();
-        //     echo $startday->toDateString();
-
-
+        }else {
 
         $event = new Event;
         $event->title =  $request->title;
@@ -163,26 +120,18 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'sympotm' => 'required',
-        // ]);
-    
-        // $event->update($request->all());
-        // $event = new Event;
-
+        // เช็ควันหยุด
         $date = $request->date;
-        // $date = "2021-03-1";
         $startday = DB::table('workingdays')->where('start', $date)->get();
-        // dd(count($startday));
-        // print_r($startday);
-        // dd(gettype($startday));
+        $dt = Carbon::now();
         if(count($startday) == 1) {
-            // dd($startday, $date,'ตรงกับหมอหยุด');
             return redirect()->back()->with('error','ไม่สามารถเลื่อนวันนัดหมายได้ เนื่องจากวันที่ท่านเลือกตรงกับวันหยุดของคลินิก');
 
-        } else {
+        } elseif ($date < $dt->toDateString()) {
+            return redirect()->back()->with('error','ไม่สามารถทำการนัดหมายได้ กรุณาเลือกวันถัดไป');
+            // echo $dt->toDateString(); 
 
+        } else {
 
         $event->title =  $request->title;
         $event->sympotm =  $request->sympotm;

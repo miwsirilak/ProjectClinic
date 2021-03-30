@@ -3,6 +3,7 @@
         <x-slot name="logo">
             {{-- <x-jet-authentication-card-logo /> --}}
             <img src="img/logoclinic.PNG" alt="Girl in a jacket" width="150" height="100">
+            
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -13,16 +14,19 @@
             </div>
         @endif
 
+        <p class="text-center font-weight-bold">เข้าสู่ระบบ</p>
+        <br>
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
+                <x-jet-label for="email" value="{{ __('อีเมล') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-label for="password" value="{{ __('รหัสผ่าน') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
@@ -36,12 +40,12 @@
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('ลืมรหัสผ่านหรือไม่?') }}
                     </a>
                 @endif
 
                 <x-jet-button class="ml-4">
-                    {{ __('Login') }}
+                    {{ __('เข้าสู่ระบบ') }}
                 </x-jet-button>
             </div>
         </form>

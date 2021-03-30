@@ -16,6 +16,7 @@
                 </ul>
             </div>
         @endif
+        {{-- error วันหยุด --}}
         @if ($message = Session::get('error'))
             <div class="alert alert-danger">
                 <p>{{ $message }}</p>
@@ -26,7 +27,7 @@
         {{-- @foreach ($start as $start)
         <li>{{ $start }}</li>
         @endforeach --}}
-        
+
         @if (Auth::user())
             <div class="card">
                 <h5 class="card-header text-white" style="background-color:#46a7a2;">นัดหมายแพทย์</h5>
@@ -63,15 +64,29 @@
                                 </div>
                             </form>
 
-
-
                             <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <strong>อาการ</strong>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="sympotm">
+                                        {{-- <option value="ไม่ระบุอาการ" @if (old('sympotm') == 'ไม่ระบุอาการ') selected="selected" @endif>ไม่ระบุอาการ</option>
+                                        <option value="ผิวหนัง" @if (old('sympotm') == 'ผิวหนัง') selected="selected" @endif>ผิวหนัง</option>
+                                        <option value="ผม" @if (old('sympotm') == 'ผม') selected="selected" @endif>ผม</option>
+                                        <option value="เล็บ" @if (old('sympotm') == 'เล็บ') selected="selected" @endif>เล็บ</option> --}}
+                                        <option value="ไม่ระบุอาการ">ไม่ระบุอาการ</option>
+                                        <option value="ผิวหนัง">ผิวหนัง</option>
+                                        <option value="ผม">ผม</option>
+                                        <option value="เล็บ">เล็บ</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>อาการ:</strong>
                                     <textarea class="form-control" style="height:150px" name="sympotm"
                                         placeholder="อาการ"></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                 <button type="submit" class="btn btn-success">ยืนยัน</button>
                                 <a class="btn btn-danger" href="{{ route('events.index') }}">กลับ</a>
@@ -83,7 +98,7 @@
                 </div>
             </div>
         @endif
-       
+
 
     @endsection
 

@@ -107,11 +107,24 @@
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
+                                <strong>อาการ</strong>
+                                <select class="form-control" id="exampleFormControlSelect1" name="sympotm">
+                                    <option>{{ $event->sympotm }}<option>
+                                    <option value="ไม่ระบุอาการ">ไม่ระบุอาการ</option>
+                                    <option value="ผิวหนัง">ผิวหนัง</option>
+                                    <option value="ผม">ผม</option>
+                                    <option value="เล็บ">เล็บ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        {{-- <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
                                 <strong>อาการ:</strong>
                                 <textarea class="form-control" style="height:150px" name="sympotm"
                                     placeholder="Sympotm">{{ $event->sympotm }}</textarea>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                             <button type="submit" class="btn btn-success">ยืนยันเลื่อนวันนัด</button>
                             <a class="btn btn-danger" href="{{ route('events.index') }}">กลับ</a>

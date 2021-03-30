@@ -8,7 +8,7 @@
 
         <div class="row">
             <div class="col-lg-12 margin-tb">
-                <div class="pull-left text-info" >
+                <div class="pull-left text-info">
                     <h3>ประวัติการนัดหมายแพทย์</h3>
                 </div>
                 <div class="pull-right">
@@ -70,10 +70,11 @@
                 </table>
             @endif
         @endif
-
-        {!! $events->links() !!}
         {{-- การนัดหมายแพทย์ (สำหรับ Admin) --}}
-
+        
+        <br>
+        {!! $events->links() !!}
+        <br>
 
         {{-- ประวัติการนัดหมายแพทย์ (สำหรับผู้จอง) --}}
         @foreach ($events as $event)
