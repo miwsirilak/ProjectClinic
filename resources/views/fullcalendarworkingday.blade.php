@@ -42,6 +42,9 @@
                 </div>
             </div>
         </div>
+        <div id="admin">
+            {{-- {{Auth::user()->role === "admin"}} --}}
+        </div>
         {{-- <div class="container">
             <div class="response alert alert-success mt-2" style="display: none;"></div>
             <div id='calendar'></div>
@@ -81,34 +84,42 @@
                 },
                 selectable: true,
                 selectHelper: true,
+
                 select: function(start, end, allDay) {
-                    var title = prompt('เพิ่มวันหยุดการทำงาน');
+                    // if (admin) {
+                    @if (Auth::user())
+                        @if (Auth::user()->role === 'admin'){
+                            var title = prompt('เพิ่มวันหยุดการทำงาน');
+                            if (title) {
+                                var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                                var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
 
-                    if (title) {
-                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-
-                        $.ajax({
-                            url: SITEURL + "/fullcalendarworkingday/create",
-                            data: 'title=' + title + '&start=' + start + '&end=' + end,
-                            type: "POST",
-                            success: function(data) {
-                                displayMessage("เพิ่มวันหยุดเรียบร้อยแล้ว");
-                                $('#calendar').fullCalendar('removeEvents');
-                                $('#calendar').fullCalendar('refetchEvents');
+                                $.ajax({
+                                    url: SITEURL + "/fullcalendarworkingday/create",
+                                    data: 'title=' + title + '&start=' + start + '&end=' + end,
+                                    type: "POST",
+                                    success: function(data) {
+                                        displayMessage("เพิ่มวันหยุดเรียบร้อยแล้ว");
+                                        $('#calendar').fullCalendar('removeEvents');
+                                        $('#calendar').fullCalendar('refetchEvents');
+                                    }
+                                });
+                                calendar.fullCalendar('renderEvent', {
+                                        title: title,
+                                        start: start,
+                                        end: end,
+                                        allDay: allDay
+                                    },
+                                    true
+                                );
                             }
-                        });
-                        calendar.fullCalendar('renderEvent', {
-                                title: title,
-                                start: start,
-                                end: end,
-                                allDay: allDay
-                            },
-                            true
-                        );
-                    }
-                    calendar.fullCalendar('unselect');
+                            calendar.fullCalendar('unselect');
+                        }
+                        @endif
+                    @endif
+                    // }
                 },
+
 
                 eventDrop: function(event, delta) {
                     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
