@@ -29,6 +29,7 @@
                 <th>อีเมล</th>
                 <th>เบอร์โทรศัพท์</th>
                 <th>เลขบัตรประชาชน</th>
+                <th>แก้ไข | ลบ</th>
                 {{-- <th width="280px">แก้ไข | ลบ</th> --}}
             </tr>
             @foreach ($users as $user)
@@ -38,10 +39,10 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->users_phone }}</td>
                     <td>{{ $user->users_idcard }}</td>
-                    {{-- <td>
+                    <td>
                         <form action="{{ route('users.destroy', $user->id) }}" method="POST">
 
-                            <a class="btn btn-info" href="{{ route('users.show', $user->id) }}">Show</a>
+                            {{-- <a class="btn btn-info" href="{{ route('users.show', $user->id) }}">Show</a> --}}
 
                             <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">แก้ไข</a>
 
@@ -50,7 +51,7 @@
 
                             <button type="submit" class="btn btn-danger">ลบ</button>
                         </form>
-                    </td> --}}
+                    </td>
                 </tr>
             @endforeach
         </table>

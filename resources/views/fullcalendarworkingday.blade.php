@@ -121,34 +121,46 @@
                 },
 
 
-                eventDrop: function(event, delta) {
-                    var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                    var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-                    $.ajax({
-                        url: SITEURL + '/fullcalendarworkingday/update',
-                        data: 'title=' + event.title + '&start=' + start + '&end=' + end +
-                            '&id=' + event.id,
-                        type: "POST",
-                        success: function(response) {
-                            displayMessage("เลื่อนวันหยุดเรียบร้อยแล้ว");
-                        }
-                    });
-                },
+                // eventDrop: function(event, delta) {
+                //     @if (Auth::user())
+                //         @if (Auth::user()->role === 'admin'){
+                //             var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+                //             var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+                //             $.ajax({
+                //                 url: SITEURL + '/fullcalendarworkingday/update',
+                //                 data: 'title=' + event.title + '&start=' + start + '&end=' + end +
+                //                     '&id=' + event.id,
+                //                 type: "POST",
+                //                 success: function(response) {
+                //                     displayMessage("เลื่อนวันหยุดเรียบร้อยแล้ว");
+                //                 }
+                //             });
+                //         }
+                //         @endif
+                //     @endif
+                // },
+                
                 eventClick: function(event) {
-                    var deleteMsg = confirm("ท่านต้องการลบวันหยุดหรือไม่?");
-                    if (deleteMsg) {
-                        $.ajax({
-                            type: "POST",
-                            url: SITEURL + '/fullcalendarworkingday/delete',
-                            data: "&id=" + event.id,
-                            success: function(response) {
-                                if (parseInt(response) > 0) {
-                                    $('#calendar').fullCalendar('removeEvents', event.id);
-                                    displayMessage("ลบวันหยุดเรียบร้อยแล้ว");
-                                }
+                    @if (Auth::user())
+                        @if (Auth::user()->role === 'admin'){
+                            var deleteMsg = confirm("ท่านต้องการลบวันหยุดหรือไม่?");
+                            if (deleteMsg) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: SITEURL + '/fullcalendarworkingday/delete',
+                                    data: "&id=" + event.id,
+                                    success: function(response) {
+                                        if (parseInt(response) > 0) {
+                                            $('#calendar').fullCalendar('removeEvents', event.id);
+                                            displayMessage("ลบวันหยุดเรียบร้อยแล้ว");
+                                        }
+                                    }
+                                });
                             }
-                        });
-                    }
+                        }
+                        @endif
+                    @endif
+
                 }
             });
         });
