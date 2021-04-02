@@ -38,15 +38,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'users_phone' => 'required',
-            'users_idcard' => 'required',
-        ]);
-        // dd($request);
-        User::create($request->all());
-     
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'users_phone' => 'required',
+        //     'users_idcard' => 'required',
+        //     'role' => 'required',
+        // ]);
+        // // dd($request);
+        // User::create($request->all());
+
+        $user = New User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->users_phone = $request->users_phone;
+        $user->users_idcard = $request->users_idcard;
+        $user->role = $request->role;
+        $user->save();
+
         return redirect()->route('users.index')
                         ->with('success','User created successfully.');
     }
@@ -82,14 +91,23 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'users_phone' => 'required',
-            'users_idcard' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'users_phone' => 'required',
+        //     'users_idcard' => 'required',
+        //     'role' => 'required',
+        // ]);
     
-        $user->update($request->all());
+        // $user->update($request->all());
+        // $event = new User;
+        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->users_phone = $request->users_phone;
+        $user->users_idcard = $request->users_idcard;
+        $user->role = $request->role;
+        $user->save();
     
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');

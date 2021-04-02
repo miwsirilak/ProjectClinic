@@ -14,7 +14,7 @@
 
     @if ($errors->any())
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <strong>คำเตือน!</strong>มีปัญหาบางอย่างเกี่ยวกับข้อมูลที่คุณป้อน<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -55,6 +55,16 @@
                             <div class="form-group">
                                 <strong>Users_idcard:</strong>
                                 <input type="text" name="users_idcard" class="form-control" placeholder="Users_idcard">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>สถานะ</strong>
+                                <select class="form-control" id="exampleFormControlSelect1" name="role">
+                                    <option value="role">user</option>
+                                    <option value="admin">admin</option>
+                                </select>
                             </div>
                         </div>
 

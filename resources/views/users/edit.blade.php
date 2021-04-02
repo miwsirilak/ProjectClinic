@@ -1,72 +1,140 @@
-@extends('users.layout')
+@extends('templete.templateadmin')
+
+@section('title', 'Base page')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit user</h2>
+
+    <div class="container mt-2">
+
+        <div class="card text-info mb-3" style="max-width: 80rem; background-color:#d1dddc;">
+            <div class="card-header bg-white">
+                <h5>แก้ไขข้อมูล ({{ $user->role }})</h5>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+            <div class="card-body">
+
+                <div class="card mb-3" style="max-width: 1100px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            {{-- @if (Auth::user()->name === $user->name) --}}
+                            @if (Auth::user()->role === 'admin')
+                                @if (Auth::user()->name === $user->name)
+                                    <img src="{{ asset('img/doctors.PNG') }}" class="rounded mx-auto d-block" width="200"
+                                        height="200">
+                                @endif
+                            @endif
+
+                            @if (Auth::user()->role === 'user')
+                                @if (Auth::user()->name === $user->name)
+                                    <img src="{{ asset('img/Users.PNG') }}" class="rounded mx-auto d-block" width="200"
+                                        height="200">
+                                @endif
+                            @endif
+                        </div>
+                        <div class="col-md-8">
+                            {{-- <div class="card-body"> --}}
+                            {{-- form --}}
+                            {{-- @if (Auth::user())
+                                    @if (Auth::user()->role === 'admin')
+                                        <div class="row">
+                                            <div class="col-lg-12 margin-tb">
+                                                <div class="pull-left">
+                                                    <h5>ข้อมูลคนไข้</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif --}}
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <strong>คำเตือน!</strong> มีปัญหาบางอย่างเกี่ยวกับข้อมูลที่คุณป้อน<br><br>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form action="{{ route('users.update', $user->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-11">
+                                        <div class="form-group">
+                                            <strong>ชื่อ:</strong>
+                                            <input type="text" name="name" value="{{ $user->name }}" class="form-control"
+                                                placeholder="ชื่อ">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-11">
+                                        <div class="form-group">
+                                            <strong>อีเมล:</strong>
+                                            <input type="email" name="email" value="{{ $user->email }}"
+                                                class="form-control" placeholder="อีเมล">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-11">
+                                        <div class="form-group">
+                                            <strong>เบอร์โทรศัพท์:</strong>
+                                            <input type="text" name="users_phone" value="{{ $user->users_phone }}"
+                                                class="form-control" placeholder="เบอร์โทรศัพท์">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-11">
+                                        <div class="form-group">
+                                            <strong>เลขบัตรประชาชน:</strong>
+                                            <input type="text" name="users_idcard" value="{{ $user->users_idcard }}"
+                                                class="form-control" placeholder="เลขบัตรประชาชน">
+                                        </div>
+                                    </div>
+
+                                    @if (Auth::user())
+                                        @if (Auth::user()->role === 'admin')
+                                            <div class="col-xs-12 col-sm-12 col-md-11">
+                                                <div class="form-group">
+                                                    <strong>สถานะ</strong>
+                                                    <select class="form-control" id="exampleFormControlSelect1" name="role">
+                                                        {{ $user->role }}
+                                                        <option value="user">user</option>
+                                                        <option value="admin">admin</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
+
+                                    @if (Auth::user())
+                                        @if (Auth::user()->role === 'user')
+                                            <div class="col-xs-12 col-sm-12 col-md-11">
+                                                <div class="form-group">
+                                                    <strong>สถานะ</strong>
+                                                    <select class="form-control" id="exampleFormControlSelect1" name="role">
+                                                        {{ $user->role }}
+                                                        <option value="user">user</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endif
+
+                                    <div class="col-xs-12 col-sm-12 col-md-11 text-center">
+                                        <button type="submit" class="btn btn-primary">บันทึก</button>
+                                        <a class="btn btn-danger" href="{{ route('users.index') }}"> ย้อนกลับ</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                            {{-- form --}}
+
+                            {{-- </div> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @endsection
 
-    <form action="{{ route('users.update', $user->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Name:</strong>
-                    <input type="text" name="name" value="{{ $user->name }}" class="form-control" placeholder="Name">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Email:</strong>
-                    <input type="email" name="email" value="{{ $user->email }}" class="form-control"
-                        placeholder="Email">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Users_phone:</strong>
-                    <input type="text" name="users_phone" value="{{ $user->users_phone }}" class="form-control"
-                        placeholder="Users_phone">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Users_idcard:</strong>
-                    <input type="text" name="users_idcard" value="{{ $user->users_idcard }}" class="form-control"
-                        placeholder="Users_idcard">
-                </div>
-            </div>
-
-            {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Detail:</strong>
-                    <textarea class="form-control" style="height:150px" name="detail"
-                        placeholder="Detail">{{ $user->detail }}</textarea>
-                </div>
-            </div> --}}
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-
-    </form>
-@endsection
+</div>

@@ -610,7 +610,7 @@
                         @if (Auth::user())
                             @if (Auth::user()->role === 'admin')
                                 <a class="collapse-item" href="{{ route('fullcalendarworkingday') }}">กำหนดวันหยุด</a>
-                                <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อผู้ป่วย</a>
+                                <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อผู้ใช้งาน</a>
                             @endif
                         @endif
                         <a class="collapse-item" href="{{ route('events.index') }}">ประวัติการนัดหมายแพทย์</a>
@@ -842,11 +842,11 @@
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            {{-- <a class="dropdown-item" title="Dashboard"
-                                                href="{{ route('admin.dashboard') }}">
+                                            <a class="dropdown-item" title="Dashboard"
+                                                href="{{ route('users.index') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Dashboard
-                                            </a> --}}
+                                                ข้อมูลผู้ใช้งาน
+                                            </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -871,11 +871,11 @@
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            {{-- <a class="dropdown-item" title="Dashboard"
-                                                href="{{ route('user.dashboard') }}">
+                                            <a class="dropdown-item" title="Dashboard"
+                                                href="{{ route('users.index') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Dashboard
-                                            </a> --}}
+                                                โปรไฟล์
+                                            </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
