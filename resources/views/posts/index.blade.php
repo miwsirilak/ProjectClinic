@@ -9,7 +9,7 @@
                     </div>
                     <div class="pull-right mb-2">
                         <a class="btn btn-success" href="{{ route('posts.create') }}">
-                            เพิ่มความรู้หรือข่าวสาร</a>
+                            เพิ่มข่าวสาร</a>
                     </div>
                 </div>
             @endif
@@ -24,7 +24,7 @@
 
     @foreach ($posts as $post)
         <div class="card border-success">
-            <h5 class="card-header ">ความรู้ข่าวสาร</h5>
+            <h5 class="card-header ">ข่าวสาร</h5>
             <div class="card-body">
                 <div class="row no-gutters">
                     <div class="col-md-4">
@@ -45,7 +45,7 @@
                                         @method('DELETE')
                                         {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
                                         <button type="submit" class="btn btn-danger"
-                                            onclick="return confirm('ท่านต้องการลบความรู้ข่าวสารใช่หรือไม่ ?')">ยกเลิกวันนัด</button>
+                                            onclick="return confirm('ท่านต้องการลบข่าวสารใช่หรือไม่ ?')">ยกเลิกวันนัด</button>
                                     </form>
                                 @endif
                             @endif

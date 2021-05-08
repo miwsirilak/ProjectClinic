@@ -473,7 +473,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">รายการ:</h6>
                         <a class="collapse-item" href="{{ route('dermatologist') }}">ข้อมูลแพทย์</a>
-                        <a class="collapse-item" href="{{ route('fullcalendarworkingday') }}">ตารางการทำงานของแพทย์</a>
+                        <a class="collapse-item"
+                            href="{{ route('fullcalendarworkingday') }}">ตารางการทำงานของแพทย์</a>
                     </div>
                 </div>
             </li>
@@ -496,7 +497,11 @@
                             @endif
                         @endif
                         <a class="collapse-item" href="{{ route('events.index') }}">ประวัติการนัดหมายแพทย์</a>
-                        <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
+                        @if (Auth::user())
+                            @if (Auth::user()->role === 'user')
+                                <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
+                            @endif
+                        @endif
                         {{-- <a class="collapse-item" href="{{ route('sliding') }}">เลื่อนวันนัด</a>
                         <a class="collapse-item" href="{{ route('cancle') }}">ยกเลิกวันนัด</a> --}}
                     </div>
@@ -639,21 +644,19 @@
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="mr-2 d-none d-lg-inline text-gray-600 small" title="My Account">My
                                                 Account : {{ Auth::user()->name }}</span>
-                                            <img class="img-profile rounded-circle"
-                                                src="{{ asset('img/doctors.PNG') }}">
+                                            <img class="img-profile rounded-circle" src="{{ asset('img/doctors.PNG') }}">
                                         </a>
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" title="Dashboard"
-                                                href="{{ route('users.index') }}">
+                                            <a class="dropdown-item" title="Dashboard" href="{{ route('users.index') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 ข้อมูลผู้ใช้งาน
                                             </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                ออกจากระบบ
                                             </a>
                                             <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                                 @csrf
@@ -666,21 +669,19 @@
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span class="mr-2 d-none d-lg-inline text-gray-600 small" title="My Account">My
                                                 Account : {{ Auth::user()->name }}</span>
-                                            <img class="img-profile rounded-circle"
-                                                src="{{ asset('img/Users.PNG') }}">
+                                            <img class="img-profile rounded-circle" src="{{ asset('img/Users.PNG') }}">
                                         </a>
                                         <!-- Dropdown User -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" title="Dashboard"
-                                                href="{{ route('users.index') }}">
+                                            <a class="dropdown-item" title="Dashboard" href="{{ route('users.index') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 โปรไฟล์
                                             </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                Logout
+                                                ออกจากระบบ
                                             </a>
                                             <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                                 @csrf

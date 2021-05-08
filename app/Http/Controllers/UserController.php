@@ -57,7 +57,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')
-                        ->with('success','User created successfully.');
+                        ->with('success','เพิ่มข้อมูลเรียบร้อยแล้ว.');
     }
      
     /**
@@ -91,17 +91,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'email' => 'required',
-        //     'users_phone' => 'required',
-        //     'users_idcard' => 'required',
-        //     'role' => 'required',
-        // ]);
-    
-        // $user->update($request->all());
-        // $event = new User;
-        
+       
         $user->name = $request->name;
         $user->email = $request->email;
         $user->users_phone = $request->users_phone;
@@ -110,7 +100,7 @@ class UserController extends Controller
         $user->save();
     
         return redirect()->route('users.index')
-                        ->with('success','User updated successfully');
+                        ->with('success','แก้ไขข้อมูลเรียบร้อยแล้ว');
     }
     
     /**
@@ -124,6 +114,6 @@ class UserController extends Controller
         $user->delete();
     
         return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
+                        ->with('success','ลบผู้ใช้งานเรียบร้อยแล้ว');
     }
 }

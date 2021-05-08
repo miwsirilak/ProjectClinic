@@ -55,7 +55,7 @@
                                     @method('DELETE')
 
                                     <button type="submit" class="btn btn-danger"
-                                        onclick="return confirm('ต้องการลบข้อมูลลบข้อมูลคนไข้หรือไม่ ?')" โ>ลบ</button>
+                                        onclick="return confirm('ต้องการลบข้อมูลลบข้อมูลคนไข้หรือไม่ ?')" >ลบ</button>
                                 </form>
                             </td>
                         </tr>
@@ -101,8 +101,6 @@
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('ต้องการลบข้อมูลส่วนตัวหรือไม่ ?')">ลบ</button>
                                                 </form>
                                             </div>
                                         </div>

@@ -31,19 +31,6 @@
                             @endif
                         </div>
                         <div class="col-md-8">
-                            {{-- <div class="card-body"> --}}
-                            {{-- form --}}
-                            {{-- @if (Auth::user())
-                                    @if (Auth::user()->role === 'admin')
-                                        <div class="row">
-                                            <div class="col-lg-12 margin-tb">
-                                                <div class="pull-left">
-                                                    <h5>ข้อมูลคนไข้</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endif --}}
 
                             @if ($errors->any())
                                 <div class="alert alert-danger">

@@ -26,10 +26,9 @@
                     <h5 class="card-title text-info">ตารางการทำงานของแพทย์</h5>
                     @if (Auth::user())
                         @if (Auth::user()->role === 'admin')
-                            <div class="pull-right">
+                            {{-- <div class="pull-right">
                                 <a class="btn btn-warning" href="{{ route('workingdays.create') }}">เพิ่มวันหยุด</a>
-                                {{-- <a class="btn btn-warning" href="{{ route('fullcalendarDates') }}">ปฎิทินการนัดหมายแพทย์</a> --}}
-                            </div>
+                            </div> --}}
                         @endif
                     @endif
 
@@ -86,7 +85,6 @@
                 selectHelper: true,
 
                 select: function(start, end, allDay) {
-                    // if (admin) {
                     @if (Auth::user())
                         @if (Auth::user()->role === 'admin'){
                             var title = prompt('เพิ่มวันหยุดการทำงาน');
@@ -117,7 +115,6 @@
                         }
                         @endif
                     @endif
-                    // }
                 },
 
 
