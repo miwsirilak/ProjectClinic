@@ -31,8 +31,8 @@
         @endif
 
         {{-- การนัดหมายแพทย์ (สำหรับ Admin) --}}
-        @if (Auth::user()) {{-- ถ้าไม่ login ก็จะไม่เห็น --}}
-            @if (Auth::user()->role === 'admin') {{-- ถ้าตัวเองเป็นคนจอง ก็จะเห็นประวัติจองของทุกคน --}}
+        @if (Auth::user())
+            @if (Auth::user()->role === 'admin')
                 <table class="table table-bordered">
                     <tr class="text-white" style="background-color:#435D7D;">
                         <th>ลำดับ</th>
@@ -59,8 +59,6 @@
 
                                     @csrf
                                     @method('DELETE')
-
-                                    {{-- <button type="submit" class="btn btn-danger">ยกเลิกวันนัด</button> --}}
                                     <button type="submit" class="btn btn-danger"
                                         onclick="return confirm('ท่านต้องการยกเลิกวันนัดใช่หรือไม่ ?')">ยกเลิกวันนัด</button>
                                 </form>
@@ -71,19 +69,18 @@
             @endif
         @endif
         {{-- การนัดหมายแพทย์ (สำหรับ Admin) --}}
-        
+
         <br>
         {!! $events->links() !!}
         <br>
 
         {{-- ประวัติการนัดหมายแพทย์ (สำหรับผู้จอง) --}}
         @foreach ($events as $event)
-            @if (Auth::user()) {{-- ถ้าไม่ login ก็จะไม่เห็น --}}
-                @if (Auth::user()->name === $event->username) {{-- ถ้าตัวเองเป็นคนจอง ก็จะเห็นประวัติตัวเองจอง --}}
+            @if (Auth::user())
+                @if (Auth::user()->name === $event->username)
                     <div class="card text-center" style="background-color:#ffffff;">
                         <div class="card-header text-white" style="background-color:#e99292;">
                             ประวัติการนัดหมายแพทย์
-                            {{-- {{ $event->username }} {{ Auth::user()->name }} --}}
                         </div>
                         <div class="card-body">
                             <h5 class="card-title text-success">จองแล้ว</h5>
@@ -97,8 +94,6 @@
 
                                 @csrf
                                 @method('DELETE')
-
-                                {{-- <button type="submit" class="btn btn-danger">ยกเลิกวันนัด</button> --}}
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('ท่านต้องการยกเลิกวันนัดใช่หรือไม่ ?')">ยกเลิกวันนัด</button>
                             </form>
@@ -109,23 +104,6 @@
             <br>
         @endforeach
         {{-- ประวัติการนัดหมายแพทย์ (สำหรับผู้จอง) --}}
-
-
-        {{-- ประวัติการนัดหมายแพทย์ (สำหรับผู้ที่ไม่ได้จอง) --}}
-        {{-- @if (Auth::user()) 
-            @if (Auth::user()->role !== 'admin')
-                @if (Auth::user()->name !== $event->username) 
-                    <div class="card text-center" style="width: 67rem; height: 20rem;">
-                        <div class="card-body">
-                            <br><br><br><br><br>
-                            <h5 class="card-title text-danger">ไม่มีประวัติการนัดหมายแพทย์</h5>
-                        </div>
-                    </div>
-                    <br>
-                @endif
-            @endif
-        @endif --}}
-        {{-- ประวัติการนัดหมายแพทย์ (สำหรับผู้ที่ไม่ได้จอง) --}}
 
     @endsection
 

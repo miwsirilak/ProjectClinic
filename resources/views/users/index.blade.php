@@ -19,9 +19,6 @@
                         <div class="pull-left">
                             <h4>รายชื่อผู้ใช้งาน</h4>
                         </div>
-                        {{-- <div class="pull-right">
-                    <a class="btn btn-success" href="{{ route('users.create') }}"> Create New user</a>
-                </div> --}}
                     </div>
                 </div>
 
@@ -55,7 +52,7 @@
                                     @method('DELETE')
 
                                     <button type="submit" class="btn btn-danger"
-                                        onclick="return confirm('ต้องการลบข้อมูลลบข้อมูลคนไข้หรือไม่ ?')" >ลบ</button>
+                                        onclick="return confirm('ต้องการลบข้อมูลลบข้อมูลคนไข้หรือไม่ ?')">ลบ</button>
                                 </form>
                             </td>
                         </tr>

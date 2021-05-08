@@ -24,9 +24,6 @@
                 <div class="card-body">
                     <h5 class="card-title text-info">ข้อมูลการนัดหมายแพทย์</h5>
                     <div class="container">
-                        {{-- <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <a class="btn btn-success" href="/">กลับสู่หน้าหลัก</a>
-                        </div> --}}
                         <br>
                         @if ($message = Session::get('success'))
                             <div class="alert alert-success">
@@ -60,11 +57,8 @@
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    // right: 'month,agendaWeek,agendaDay'
                     right: 'month,listYear'
                 },
-                // editable: true,
-                // defaultView: 'month',
                 events: SITEURL + "/fullcalendareventmaster",
                 displayEventTime: false,
                 editable: true,
@@ -80,80 +74,8 @@
                 selectable: true,
                 selectHelper: true,
 
-                // select: function(start, end, allDay) {
-                //     var title = prompt('Title:');
-
-                //     if (title) {
-                //         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                //         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-                //         console.log(start);
-                //         console.log(end);
-                //         $.ajax({
-                //             url: SITEURL + "/events",
-                //             data: 'title=' + title + '&username=' + 'aa' + '&start=' + start +
-                //                 '&end=' + end,
-                //             type: "POST",
-                //             // success: function(data) {
-                //             //     displayMessage(
-                //             //         "ยืนยันวันปิดทำการของคลินิกเรียบร้อยแล้ว");
-                //             //     $('#calendar').fullCalendar('removeEvents');
-                //             //     $('#calendar').fullCalendar('refetchEvents');
-                //             // }
-                //         });
-                //         calendar.fullCalendar('renderEvent', {
-                //                 title: title,
-                //                 start: start,
-                //                 end: end,
-                //                 allDay: allDay
-                //             },
-                //             true
-                //         );
-                //     }
-                //     calendar.fullCalendar('unselect');
-                // },
-
-                // eventDrop: function(event, delta) {
-                //     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                //     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-                //     $.ajax({
-                //         url: SITEURL + '/fullcalendareventmaster/update',
-                //         data: 'title=' + event.title + '&start=' + start + '&end=' + end +
-                //             '&id=' + event.id,
-                //         type: "POST",
-                //         success: function(response) {
-                //             displayMessage("เลื่อนวันปิดทำการของคลินิกเรียบร้อยแล้ว");
-                //         }
-                //     });
-                // },
-
-                // eventClick: function(event) {
-                //     var deleteMsg = confirm("ยืนยันยกเลิกวันหยุด");
-                //     if (deleteMsg) {
-                //         $.ajax({
-                //             type: "POST",
-                //             url: SITEURL + '/fullcalendareventmaster/delete',
-                //             data: "&id=" + event.id,
-                //             success: function(response) {
-                //                 if (parseInt(response) > 0) {
-                //                     $('#calendar').fullCalendar('removeEvents', event
-                //                         .id);
-                //                     displayMessage(
-                //                         "ยกเลิกวันปิดทำการของคลินิกเรียบร้อยแล้ว");
-                //                 }
-                //             }
-                //         });
-                //     }
-                // }
             });
         });
-
-        // function displayMessage(message) {
-        //     $(".response").css('display', 'block');
-        //     $(".response").html("" + message + "");
-        //     setInterval(function() {
-        //         $(".response").fadeOut();
-        //     }, 4000);
-        // }
 
     </script>
 

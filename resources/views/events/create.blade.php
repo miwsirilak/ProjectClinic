@@ -24,10 +24,6 @@
         @endif
         <br>
 
-        {{-- @foreach ($start as $start)
-        <li>{{ $start }}</li>
-        @endforeach --}}
-
         @if (Auth::user())
             <div class="card">
                 <h5 class="card-header text-white" style="background-color:#46a7a2;">นัดหมายแพทย์</h5>
@@ -47,7 +43,6 @@
                             <form>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <label for="party"><strong>วันที่:</strong>
-                                        {{-- <input type="date" value="2021-01-01" name="date" class="form-control"> --}}
                                         <input type="date" value="" name="date" class="form-control" required>
                                         @error('date')
                                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -68,10 +63,6 @@
                                 <div class="form-group">
                                     <strong>อาการ</strong>
                                     <select class="form-control" id="exampleFormControlSelect1" name="sympotm">
-                                        {{-- <option value="ไม่ระบุอาการ" @if (old('sympotm') == 'ไม่ระบุอาการ') selected="selected" @endif>ไม่ระบุอาการ</option>
-                                        <option value="ผิวหนัง" @if (old('sympotm') == 'ผิวหนัง') selected="selected" @endif>ผิวหนัง</option>
-                                        <option value="ผม" @if (old('sympotm') == 'ผม') selected="selected" @endif>ผม</option>
-                                        <option value="เล็บ" @if (old('sympotm') == 'เล็บ') selected="selected" @endif>เล็บ</option> --}}
                                         <option value="ไม่ระบุอาการ">ไม่ระบุอาการ</option>
                                         <option value="ผิวหนัง">ผิวหนัง</option>
                                         <option value="ผม">ผม</option>
@@ -79,14 +70,6 @@
                                     </select>
                                 </div>
                             </div>
-
-                            {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>อาการ:</strong>
-                                    <textarea class="form-control" style="height:150px" name="sympotm"
-                                        placeholder="อาการ"></textarea>
-                                </div>
-                            </div> --}}
                             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                 <button type="submit" class="btn btn-success">ยืนยัน</button>
                                 <a class="btn btn-danger" href="{{ route('events.index') }}">กลับ</a>

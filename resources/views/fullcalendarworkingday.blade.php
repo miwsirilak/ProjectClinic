@@ -26,9 +26,6 @@
                     <h5 class="card-title text-info">ตารางการทำงานของแพทย์</h5>
                     @if (Auth::user())
                         @if (Auth::user()->role === 'admin')
-                            {{-- <div class="pull-right">
-                                <a class="btn btn-warning" href="{{ route('workingdays.create') }}">เพิ่มวันหยุด</a>
-                            </div> --}}
                         @endif
                     @endif
 
@@ -42,12 +39,7 @@
             </div>
         </div>
         <div id="admin">
-            {{-- {{Auth::user()->role === "admin"}} --}}
         </div>
-        {{-- <div class="container">
-            <div class="response alert alert-success mt-2" style="display: none;"></div>
-            <div id='calendar'></div>
-        </div> --}}
 
     </body>
     <script>
@@ -89,72 +81,52 @@
                         @if (Auth::user()->role === 'admin'){
                             var title = prompt('เพิ่มวันหยุดการทำงาน');
                             if (title) {
-                                var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-                                var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-
-                                $.ajax({
-                                    url: SITEURL + "/fullcalendarworkingday/create",
-                                    data: 'title=' + title + '&start=' + start + '&end=' + end,
-                                    type: "POST",
-                                    success: function(data) {
-                                        displayMessage("เพิ่มวันหยุดเรียบร้อยแล้ว");
-                                        $('#calendar').fullCalendar('removeEvents');
-                                        $('#calendar').fullCalendar('refetchEvents');
-                                    }
-                                });
-                                calendar.fullCalendar('renderEvent', {
-                                        title: title,
-                                        start: start,
-                                        end: end,
-                                        allDay: allDay
-                                    },
-                                    true
-                                );
+                            var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
+                            var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+                    
+                            $.ajax({
+                            url: SITEURL + "/fullcalendarworkingday/create",
+                            data: 'title=' + title + '&start=' + start + '&end=' + end,
+                            type: "POST",
+                            success: function(data) {
+                            displayMessage("เพิ่มวันหยุดเรียบร้อยแล้ว");
+                            $('#calendar').fullCalendar('removeEvents');
+                            $('#calendar').fullCalendar('refetchEvents');
+                            }
+                            });
+                            calendar.fullCalendar('renderEvent', {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                            },
+                            true
+                            );
                             }
                             calendar.fullCalendar('unselect');
-                        }
+                            }
                         @endif
                     @endif
                 },
 
-
-                // eventDrop: function(event, delta) {
-                //     @if (Auth::user())
-                //         @if (Auth::user()->role === 'admin'){
-                //             var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-                //             var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-                //             $.ajax({
-                //                 url: SITEURL + '/fullcalendarworkingday/update',
-                //                 data: 'title=' + event.title + '&start=' + start + '&end=' + end +
-                //                     '&id=' + event.id,
-                //                 type: "POST",
-                //                 success: function(response) {
-                //                     displayMessage("เลื่อนวันหยุดเรียบร้อยแล้ว");
-                //                 }
-                //             });
-                //         }
-                //         @endif
-                //     @endif
-                // },
-                
                 eventClick: function(event) {
                     @if (Auth::user())
                         @if (Auth::user()->role === 'admin'){
                             var deleteMsg = confirm("ท่านต้องการลบวันหยุดหรือไม่?");
                             if (deleteMsg) {
-                                $.ajax({
-                                    type: "POST",
-                                    url: SITEURL + '/fullcalendarworkingday/delete',
-                                    data: "&id=" + event.id,
-                                    success: function(response) {
-                                        if (parseInt(response) > 0) {
-                                            $('#calendar').fullCalendar('removeEvents', event.id);
-                                            displayMessage("ลบวันหยุดเรียบร้อยแล้ว");
-                                        }
-                                    }
-                                });
+                            $.ajax({
+                            type: "POST",
+                            url: SITEURL + '/fullcalendarworkingday/delete',
+                            data: "&id=" + event.id,
+                            success: function(response) {
+                            if (parseInt(response) > 0) {
+                            $('#calendar').fullCalendar('removeEvents', event.id);
+                            displayMessage("ลบวันหยุดเรียบร้อยแล้ว");
                             }
-                        }
+                            }
+                            });
+                            }
+                            }
                         @endif
                     @endif
 

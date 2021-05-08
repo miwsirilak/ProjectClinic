@@ -502,8 +502,6 @@
                                 <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
                             @endif
                         @endif
-                        {{-- <a class="collapse-item" href="{{ route('sliding') }}">เลื่อนวันนัด</a>
-                        <a class="collapse-item" href="{{ route('cancle') }}">ยกเลิกวันนัด</a> --}}
                     </div>
                 </div>
             </li>
@@ -518,25 +516,11 @@
             </div>
 
             <!-- Nav Item - Charts -->
-            {{-- <li class="nav-item">
-        <a class="nav-link" href="{{route('cards')}}">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>ความรู้เกี่ยวกับโรคผิวหนัง</span></a>
-      </li> --}}
-
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('location') }}">
                     <i class="fas fa-fw fa-map-marker-alt"></i>
                     <span>ที่ตั้งคลินิก</span></a>
             </li>
-
-            <!-- Nav Item - Tables -->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('chat') }}">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>ติดต่อสอบถาม</span></a>
-            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -562,20 +546,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-
-                    <!-- Topbar Search -->
-                    {{-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn" type="button" style="background-color:#27a7e2;">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -603,36 +573,6 @@
                                 </form>
                             </div>
                         </li>
-
-                        {{-- <!-- แจ้งเตือน -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">1+</span>
-                            </a>
-
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li> --}}
 
                         {{-- login ตกแต่ง --}}
                         @if (Route::has('login'))
@@ -710,28 +650,12 @@
 
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <!-- <h1 class="h4 mb-0 text-gray-800">คลินิกโรคผิวหนัง แพทย์หญิงปิยะรัตน์</h1> -->
-                            {{-- @yield('content') --}}
                         </div>
 
                         <!-- Content Row -->
 
                         <div class="row">
                             @yield('content')
-
-
-
-                            <!-- Footer -->
-                            {{-- ส่วนข้างล่าง --}}
-                            {{-- <footer class="sticky-footer bg-white">
-                                <div class="container my-auto">
-                                    <div class="copyright text-center my-auto">
-                                        <span>คลินิกโรคผิวหนัง แพทย์หญิง ปิยะรัตน์ Line:0655639744s โทร 065 563 9744</span>
-                                        <span><a href="https://maps.app.goo.gl/LgQSMMeAazCbRyA97">ที่ตั้งคลินิก</a></span>
-                                    </div>
-                                </div>
-                            </footer> --}}
-                            <!-- End of Footer -->
 
                         </div>
                         <!-- End of Content Wrapper -->
@@ -765,29 +689,9 @@
                         </div>
                     </div>
 
-                    <!-- Bootstrap core JavaScript-->
-                    {{-- jquery.min.js ทับ fullcalendar --}}
-                    {{-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> --}}
                     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-                    <!-- Core plugin JavaScript-->
                     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-
-                    <!-- Custom scripts for all pages-->
                     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
-                    <!-- Page level plugins -->
-                    {{-- ลองเอาออกเพราะ error --}}
-                    {{-- <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script> --}}
-
-                    <!-- Page level custom scripts -->
-                    {{-- ลองเอาออกเพราะ error --}}
-                    {{-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-                    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> --}}
-                    {{-- templat --}}
-
-
-
                 </div>
     </body>
 
