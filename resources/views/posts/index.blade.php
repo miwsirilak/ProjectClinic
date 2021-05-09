@@ -1,4 +1,5 @@
 {{-- post --}}
+<title>Clinic</title>
 <div class="container mt-2">
     <div class="row">
         @if (Auth::user())

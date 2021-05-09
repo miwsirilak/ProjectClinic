@@ -1,4 +1,5 @@
 @extends('users.layout')
+<title>Clinic</title>
 
 @section('content')
     <div class="row">

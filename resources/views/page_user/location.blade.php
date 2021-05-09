@@ -1,6 +1,7 @@
 @extends('templete.templateadmin')
 
 @section('title', 'Base page')
+<title>Clinic</title>
 
 @section('content')
     {{-- แผนที่ --}}
