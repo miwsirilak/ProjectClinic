@@ -408,7 +408,11 @@
                             @endif
                         @endif
                         <a class="collapse-item" href="{{ route('events.index') }}">ประวัติการนัดหมายแพทย์</a>
-                        <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
+                        @if (Auth::user())
+                            @if (Auth::user()->role === 'user')
+                                <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
+                            @endif
+                        @endif
                     </div>
                 </div>
             </li>
