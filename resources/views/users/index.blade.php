@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
-                            <h4>รายชื่อผู้ใช้งาน</h4>
+                            <h4>รายชื่อคนไข้</h4>
                         </div>
                     </div>
                 </div>

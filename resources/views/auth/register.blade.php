@@ -1,3 +1,4 @@
+<title>Clinic</title>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -5,7 +6,7 @@
             <img src="img/logoclinic.PNG" alt="Girl in a jacket" width="150" height="100">
         </x-slot>
 
-        <p class="text-center font-weight-bold">ลงทะเบียนผู้ป่วย</p>
+        <p class="text-center font-weight-bold">ลงทะเบียนคนไข้</p>
         <br>
 
         <x-jet-validation-errors class="mb-4" />

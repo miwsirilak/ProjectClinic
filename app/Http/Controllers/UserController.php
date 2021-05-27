@@ -114,6 +114,6 @@ class UserController extends Controller
         $user->delete();
     
         return redirect()->route('users.index')
-                        ->with('success','ลบผู้ใช้งานเรียบร้อยแล้ว');
+                        ->with('success','ลบข้อมูลคนไข้เรียบร้อยแล้ว');
     }
 }

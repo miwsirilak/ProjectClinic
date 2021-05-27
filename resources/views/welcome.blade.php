@@ -404,15 +404,13 @@
                         @if (Auth::user())
                             @if (Auth::user()->role === 'admin')
                                 <a class="collapse-item" href="{{ route('fullcalendarworkingday') }}">กำหนดวันหยุด</a>
-                                <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อผู้ใช้งาน</a>
+                                <a class="collapse-item" href="{{ route('users.index') }}">รายชื่อคนไข้</a>
                             @endif
                         @endif
                         <a class="collapse-item" href="{{ route('events.index') }}">ประวัติการนัดหมายแพทย์</a>
-                        @if (Auth::user())
-                            @if (Auth::user()->role === 'user')
-                                <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
-                            @endif
-                        @endif
+            
+                        <a class="collapse-item" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
+                    
                     </div>
                 </div>
             </li>
@@ -503,7 +501,7 @@
                                             <a class="dropdown-item" title="Dashboard"
                                                 href="{{ route('users.index') }}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                                ข้อมูลผู้ใช้งาน
+                                                ข้อมูลคนไข้
                                             </a>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -578,8 +576,8 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Calendar</div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">ตารางการทำงานของแพทย์
-                                                </div>
+                                                <a class="h6 mb-0 font-weight-bold text-gray-800" href="{{ route('fullcalendarworkingday') }}">ตารางการทำงานของแพทย์
+                                                </a>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-rgb-300"
@@ -598,7 +596,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Appointment</div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">นัดหมายแพทย์</div>
+                                                <a class="h6 mb-0 font-weight-bold text-gray-800" href="{{ route('events.create') }}">นัดหมายแพทย์</a>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-user-lock fa-2x text-rgb-300"
@@ -617,7 +615,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     Register</div>
-                                                <div class="h6 mb-0 font-weight-bold text-gray-800">ลงทะเบียนผู้ป่วย</div>
+                                                <a class="h6 mb-0 font-weight-bold text-gray-800" href="{{ route('register') }}">ลงทะเบียนคนไข้</a>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-address-book fa-2x text-rgb-300"
